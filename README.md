@@ -17,6 +17,6 @@
 - page-bookingcancle.c
 - page-bookingreport.c
 
-# Helpers 
+# Helpers functions
 - meuns: Prints menu
 - numlen: Check length intergers
