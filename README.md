@@ -1,4 +1,5 @@
 # Booking-system
+when you downloaded or cloned this project. you have to change PATH OF DATABASE in database.c to your local path of folder database
 
 # Notes
 1. STUDENT_ID: Global variable which must be examined by whole functions excepts login page and register page
