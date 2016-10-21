@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+int STUDENT_ID = 0;
+
 #include "database.c"
 #include "helpers.c"
 
@@ -14,8 +16,6 @@
 
 
 int main() {
-    
-    int STUDENT_ID = 0;
     
     char choice;
     
@@ -37,10 +37,10 @@ int main() {
             registrationPage();
             
         } else if(choice == 'i' || choice == 'I') {
-            loginPage();
+            STUDENT_ID = loginPage();
             
         } else if(choice == 'o' || choice == 'O') {
-            logoutPage();
+            STUDENT_ID = logoutPage();
             
         } else if(choice == 'a' || choice == 'A') {
             roomAbilityPage();
