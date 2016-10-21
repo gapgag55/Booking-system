@@ -23,5 +23,4 @@ when you downloaded or cloned this project. you have to change PATH OF DATABASE 
 - numlen: Check length intergers
 
 # Methods library
-- strcmp<string.h>
-  compare between 2 string and It will be returned to 0 if they are qualation. Ex if(strcmp("haha", "haha") == 0) will be true.
+- strcmp<string.h>: compare between 2 string and It will be returned to 0 if they are qualation. Ex if(strcmp("haha", "haha") == 0) will be true.
