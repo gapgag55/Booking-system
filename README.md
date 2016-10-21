@@ -1,1 +1,22 @@
 # Booking-system
+
+# Notes
+1. STUDENT_ID: Global variable which must be examined by whole functions excepts login page and register page
+2. Every files are included in main.c, you can write your code in your file(assignment)
+
+# Database
+- user: register and login
+- booking: booking, booking cancellation, booking report
+
+# Pages
+- page-registerstration.c
+- page-login.c
+- page-logout.c
+- page-room.c
+- page-booking.c
+- page-bookingcancle.c
+- page-bookingreport.c
+
+# Helpers 
+- meuns: Prints menu
+- numlen: Check length intergers
