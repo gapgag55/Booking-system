@@ -13,6 +13,8 @@ Flowchart: https://goo.gl/hxkpy6
 # Notes
 1. STUDENT_ID: Global variable which must be examined by whole functions excepts login page and register page
 2. Every files are included in main.c, you can write your code in your file(assignment)
+3. Database.c: using struct in getBookingDB function, For return array to another variable (Array can't be returned by function)
+
 
 # Database
 - user: register and login
@@ -34,6 +36,3 @@ Flowchart: https://goo.gl/hxkpy6
 # Methods library
 - strcmp[string.h]: compare between 2 string and It will be returned to 0 if they are qualation. Ex if(strcmp("haha", "haha") == 0) will be true.
 - sprintf[stdio.h]: gathering everthing what into one variable.
-
-# Notes
-1. Database.c: using struct in getBookingDB function, For return array to another variable (Array can't be returned by function)
