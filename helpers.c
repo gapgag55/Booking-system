@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 char menus(char lower, char upper, char text[]) {
     
     printf("\tEnter %c or %c for\t%s\n\n", lower, upper, text);
@@ -64,3 +63,4 @@ char *getMonth(int order) {
     
     return month;
 }
+
