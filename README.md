@@ -33,3 +33,4 @@ Flowchart: https://goo.gl/hxkpy6
 
 # Methods library
 - strcmp[string.h]: compare between 2 string and It will be returned to 0 if they are qualation. Ex if(strcmp("haha", "haha") == 0) will be true.
+- sprintf[stdio.h]: gathering everthing what into one variable.
