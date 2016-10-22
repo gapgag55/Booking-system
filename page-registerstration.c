@@ -40,9 +40,7 @@ int registrationPage() {
     } else if(strlen(mobile) != 10) {
         printf("You must use only 10 digit numbers for mobile phone");
     } else {
-        user_database = fopen(USER_DB_PATH, "a+");
-        fprintf(user_database, "%d %s %s %s %s\n", id, ipass, fname, lname, mobile);
-        fclose(user_database);
+        saveUserDB(id, ipass, fname, lname, mobile);
     }
     
     return 0;

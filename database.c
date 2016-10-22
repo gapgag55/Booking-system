@@ -45,3 +45,13 @@ int saveBookingDB(int room, int day, int month, int year, int startTime, int end
     
     return 0;
 }
+
+int saveUserDB(int id, char ipass[], char fname[], char lname[], char mobile[]) {
+    FILE *file;
+    
+    file = fopen(USER_DB_PATH, "a+");
+    fprintf(file, "%d %s %s %s %s\n", id, ipass, fname, lname, mobile);
+    fclose(file);
+    
+    return 0;
+}
