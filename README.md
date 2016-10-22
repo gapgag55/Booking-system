@@ -21,11 +21,11 @@ Flowchart: https://goo.gl/hxkpy6
 - booking: booking, booking cancellation, booking report
 
 # Pages
-- page-registration.c: Kopkap
+- page-registration.c: Kopkap [finished]
 - page-login.: Ben
-- page-logout.c
+- page-logout.c: Kopkap [finished]
 - page-room.c: Kopakp
-- page-booking.c: Kopkap
+- page-booking.c: Kopkap [finished]
 - page-bookingcancle.c: Bank
 - page-bookingreport.c: Non
 
