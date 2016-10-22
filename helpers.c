@@ -8,9 +8,13 @@ char menus(char lower, char upper, char text[]) {
 
 int numlen(int num) {
     int count = 0;
+    int mod;
     
     while(num > 0) {
         num = num / 10;
+        mod = num % 1;
+        
+        num = num - mod;
         ++count;
     }
     return count;
