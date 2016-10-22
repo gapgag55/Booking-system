@@ -3,6 +3,11 @@ when you downloaded or cloned this project. you have to change PATH OF DATABASE 
 
 Flowchart: https://goo.gl/hxkpy6
 
+# Duties
+1. Booking report: Bank
+2. Login: Ben
+3. Booking: Non
+
 # Notes
 1. STUDENT_ID: Global variable which must be examined by whole functions excepts login page and register page
 2. Every files are included in main.c, you can write your code in your file(assignment)
