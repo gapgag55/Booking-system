@@ -6,9 +6,9 @@ Flowchart: https://goo.gl/hxkpy6
 ![alt tag](https://camo.githubusercontent.com/88d4d8f9090cb6d03e4f79b7c840ae1c06bbd7ff/68747470733a2f2f73636f6e74656e742e66626b6b352d352e666e612e666263646e2e6e65742f7433312e302d382f31343638323133325f3830303831353134363732363932335f353935353536353934353532363037323136385f6f2e6a7067)
 
 # Duties
-1. Booking report: Bank
+1. Booking cancle: Bank
 2. Login: Ben
-3. Booking: Non
+3. Booking report: Non
 
 # Notes
 1. STUDENT_ID: Global variable which must be examined by whole functions excepts login page and register page
@@ -22,10 +22,10 @@ Flowchart: https://goo.gl/hxkpy6
 - page-registerstration.c
 - page-login.c
 - page-logout.c
-- page-room.c
-- page-booking.c
-- page-bookingcancle.c
-- page-bookingreport.c
+- page-room.c: Kopakp
+- page-booking.c: Kopkap
+- page-bookingcancle.c: Bank
+- page-bookingreport.c: Non
 
 # Helpers functions
 - meuns: Prints menu
