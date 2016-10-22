@@ -21,7 +21,7 @@ Flowchart: https://goo.gl/hxkpy6
 - booking: booking, booking cancellation, booking report
 
 # Pages
-- page-registerstration.c: Kopkap
+- page-registration.c: Kopkap
 - page-login.: Ben
 - page-logout.c
 - page-room.c: Kopakp
