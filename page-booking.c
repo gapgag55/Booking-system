@@ -11,6 +11,7 @@ int booking() {
     
     
     bookDB booking = getBookingDB();
+    int check = 1;
     int a;
     
     printf("-------------Booking page-------------\n");
@@ -51,11 +52,15 @@ int booking() {
         
         for (a = 0; a < booking.arrLength; a++) {
             if ((room == booking.room[a] && day == booking.day[a] && month == booking.month[a] && year == booking.year[a]) && (startTime == booking.startTime[a] || endTime == booking.endTime)) {
-                printf("Room is not avilable");
-            } else {
-                
+                check = 0;
+                break;
             }
-            printf("\n");
+        }
+        
+        if(check) {
+            saveBookingDB(room, day, month, year, startTime, endTime, STUDENT_ID);
+        } else {
+            printf("Room is not avilable");
         }
         
         

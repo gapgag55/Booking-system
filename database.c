@@ -34,3 +34,14 @@ bookDB getBookingDB() {
     
     return books;
 }
+
+
+int saveBookingDB(int room, int day, int month, int year, int startTime, int endTime, int studentID) {
+    FILE *file;
+
+    file = fopen(BOOKING_DB_PATH, "a+");
+    fprintf(file,"%d %d %d %d %d %d %d\n", room, day, month, year, startTime, endTime, studentID);
+    fclose(file);
+    
+    return 0;
+}
