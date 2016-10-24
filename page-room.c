@@ -1,21 +1,50 @@
 #include <stdio.h>
 #include <time.h>
 
+char *writeRoom(int roomId, int day, char m[]) {
+    char *text[20];
+    int month = getMonthInt(m);
+    int room;
+    
+    switch (roomId) {
+        case 1:
+            room = 101;
+            break;
+        case 2:
+            room = 102;
+            break;
+        case 3:
+            room = 103;
+            break;
+        case 4:
+            room = 104;
+            break;
+        default:
+            room = 105;
+            break;
+    }
+    
+    sprintf(text, " IT%3d %2d(M,A)", room, day);
+    return text;
+}
+
 int getCalendar(char m[]) {
     
     char days[7][4] = {"Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+    int startMonth[12] = {5,1,2,5,1,3,5,1,4,6,2,4};
+    int maxDays[12] = {31,29,31,30,31,30,31,31,30,31,30,31};
     int month = getMonthInt(m);
     
-    int first_s = 2;
+    int first_s = startMonth[getMonthInt(m)];
     int start = first_s;
-    int maxDay = 29;
+    int maxDay = maxDays[getMonthInt(m)];
     int countDay = 1;
     int roomDay = 1;
     
     int column = 7;
     int subRow = 7;
-    int row = (maxDay + start)/ 7;
-    if(row > 5) row = 6;
+    int row = (maxDay + start) / 7;
+    if(row >= 5) row = 6;
     else row = 5;
     
     
@@ -80,7 +109,7 @@ int getCalendar(char m[]) {
                                 
                                 // EDIT HERE
                                 if(roomDay <= maxDay) {
-                                    printf("IT101 %2d(M,A)  ", roomDay);
+                                    printf("%s ", writeRoom(b, roomDay, m));
                                 } else {
                                     printf("               ");
                                 }
@@ -140,16 +169,9 @@ int roomAbilityPage() {
     char month[3];
     
     printf("Room Ability page\n");
-//    
-//    time_t t = time(NULL);
-//    struct tm tm = *localtime(&t);
-//    
-//    printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_wday, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-//
-    
-//    printf("Select a month: ");
-//    scanf("%s", &month);
-    
+    printf("Enter your month [Jan, Feb, Mar, Api, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]: ");
+    scanf("%s", month);
+    printf("\n");
     getCalendar(month);
     
     return 0;
