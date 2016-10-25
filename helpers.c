@@ -99,3 +99,26 @@ int getMonthInt(char m[]) {
     return 0;
 }
 
+int getRoom(int id) {
+    int room;
+    
+    switch (id) {
+        case 1:
+            room = 101;
+            break;
+        case 2:
+            room = 102;
+            break;
+        case 3:
+            room = 103;
+            break;
+        case 4:
+            room = 104;
+            break;
+        default:
+            room = 105;
+            break;
+    }
+    
+    return room;
+}
