@@ -16,13 +16,13 @@ int booking() {
     
     printf("-------------Booking page-------------\n");
     
-
+    
     if(STUDENT_ID == 0) {
         
         while (1) {
             printf("Enter your room: ");
             scanf("%d", &room);
-
+            
             
             printf("Enter your day: ");
             scanf("%d", &day);
@@ -43,7 +43,7 @@ int booking() {
                 printf("\nInvalid room\n");
                 continue;
             }
-
+            
             
             for (a = 0; a < booking.arrLength; a++) {
                 if ((room == booking.room[a] && day == booking.day[a] && month == booking.month[a] && year == booking.year[a]) && (startTime == booking.startTime[a] || endTime == booking.endTime)) {
@@ -59,7 +59,7 @@ int booking() {
             }
             
             break;
-        
+            
         }
         
     } else {

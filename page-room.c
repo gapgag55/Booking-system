@@ -32,26 +32,26 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
     
     if(check) {
         if(justLast) {
-            sprintf(text, " %s", "(M,A)");
+            sprintf(text, "%s", "7(M,A)");
         } else {
             sprintf(text, " IT%3d 7(M,A) ", room);
         }
     } else {
         if(morning > 0 && afternoon > 0) {
             if(justLast) {
-                sprintf(text, " %d%s ", morning + afternoon, "(M,A)");
+                sprintf(text, "%d%s  ", morning + afternoon, "(M,A)");
             } else {
                 sprintf(text, " IT%3d %d%s ", room, morning + afternoon, "(M,A)");
             }
         } else if (morning > 0) {
             if(justLast) {
-                sprintf(text, " %d%s ", morning + afternoon,"(M)");
+                sprintf(text, "%d%s  ", morning + afternoon,"(M)");
             } else {
                 sprintf(text, " IT%3d %d%s   ", room, morning + afternoon, "(M)");
             }
         } else {
             if(justLast) {
-                sprintf(text, " %d%s ", morning + afternoon, "(A)");
+                sprintf(text, "%d%s  ", morning + afternoon, "(A)");
             } else {
                 sprintf(text, " IT%3d %d%s   ", room, morning + afternoon, "(A)");
             }
@@ -211,7 +211,6 @@ int getDailyView(int day, char m[]) {
     bookDB booking = getBookingDB();
     
     int a,b,c;
-    int text[6];
     int check = 0;
     
     for(a = 0; a < row; a++) {
@@ -284,31 +283,34 @@ int roomAbilityPage() {
     int day;
     char view;
     
-    printf("Room Ability page\n");
-    
-    printf("Please select a style to show the available meeting rooms: monthly view (“m” or “M”) and daily view (“d” or “D”)”): ");
-      
-    scanf(" %c", &view);
-    
-    if(view == 'm' || view == 'M') {
-        printf("Enter your month [Jan, Feb, Mar, Api, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]: ");
-        scanf("%s", &month);
-        printf("\n");
-
-        getCalendar(month);
-    
-    } else if(view == 'd' || view == 'D') {
-        do {
-            printf("Enter your date [Ex. 10 Jan]: ");
-            scanf(" %d %s", &day, &month);
-
-        } while (day < 1 && strlen(month) < 1);
-
-        getDailyView(day, month);
+    if(STUDENT_ID == 0) {
+        printf("Room Ability page\n");
+        
+        printf("Please select a style to show the available meeting rooms: monthly view (“m” or “M”) and daily view (“d” or “D”)”): ");
+        
+        scanf(" %c", &view);
+        
+        if(view == 'm' || view == 'M') {
+            printf("Enter your month [Jan, Feb, Mar, Api, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]: ");
+            scanf("%s", month);
+            printf("\n");
+            
+            getCalendar(month);
+            
+        } else if(view == 'd' || view == 'D') {
+            do {
+                printf("Enter your date [Ex. 10 Jan]: ");
+                scanf(" %d %s", &day, month);
+                
+            } while (day < 1 && strlen(month) < 1);
+            
+            getDailyView(day, month);
+        } else {
+            printf("No matching");
+        }
     } else {
-        printf("No matching");
+        printf("You are not logged!");
     }
-           
            
     return 0;
 }
