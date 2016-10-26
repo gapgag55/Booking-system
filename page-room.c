@@ -2,7 +2,7 @@
 #include <time.h>
 
 char *writeRoom(int roomId, int day, char m[], int justLast) {
-    char text[20];
+    char *text[20];
     int month = getMonthInt(m);
     bookDB booking = getBookingDB();
     int morning = 4;
@@ -32,7 +32,7 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
     
     if(check) {
         if(justLast) {
-            sprintf(text, "%s", "7(M,A)");
+            sprintf(text,"%s", "7(M,A)");
         } else {
             sprintf(text, " IT%3d 7(M,A) ", room);
         }
