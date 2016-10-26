@@ -30,38 +30,34 @@ int main() {
     menus('p', 'P', "booking report");
     
     while(1) {
-        printf("\nEnter menu: ");
+        printf("Enter menu:");
         scanf(" %c", &choice);
         
-        if(choice == 'r' || choice == 'R') {
-            registrationPage();
-            
-        } else if(choice == 'i' || choice == 'I') {
-            STUDENT_ID = loginPage();
-            
-        } else if(choice == 'o' || choice == 'O') {
-            STUDENT_ID = logoutPage();
-            
-        } else if(choice == 'a' || choice == 'A') {
-            roomAbilityPage();
-            
-        } else if(choice == 'b' || choice == 'B') {
-            booking();
-            
-        } else if(choice == 'c' || choice == 'C') {
-            bookingCancellation();
-            
-        } else if(choice == 'p' || choice == 'P') {
-            bookingReport();
-            
-        } else {
-            printf("Invalid menu");
-        }
-        
+            if(choice == 'r' || choice == 'R') {
+                registrationPage();
+                
+            } else if(choice == 'i' || choice == 'I') {
+                STUDENT_ID = loginPage();
+                
+            } else if(choice == 'o' || choice == 'O') {
+                STUDENT_ID = logoutPage();
+                
+            } else if(choice == 'a' || choice == 'A') {
+                roomAbilityPage();
+                
+            } else if(choice == 'b' || choice == 'B') {
+                booking();
+                
+            } else if(choice == 'c' || choice == 'C') {
+                bookingCancellation();
+                
+            } else if(choice == 'p' || choice == 'P') {
+                bookingReport();
+                
+            } else {
+                printf("Invalid menu\n");
+            }
     }
     
-    return 0;
-    
-    printf("\n\n\n");
     return 0;
 }

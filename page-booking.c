@@ -46,7 +46,7 @@ int booking() {
             
             
             for (a = 0; a < booking.arrLength; a++) {
-                if ((room == booking.room[a] && day == booking.day[a] && month == booking.month[a] && year == booking.year[a]) && (startTime == booking.startTime[a] || endTime == booking.endTime)) {
+                if ((room == booking.room[a] && day == booking.day[a] && month == booking.month[a] && year == booking.year[a]) && (startTime == booking.startTime[a] || endTime == booking.endTime[a])) {
                     check = 0;
                     break;
                 }

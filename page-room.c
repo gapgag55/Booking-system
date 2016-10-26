@@ -2,7 +2,7 @@
 #include <time.h>
 
 char *writeRoom(int roomId, int day, char m[], int justLast) {
-    char *text[20];
+    char text[20];
     int month = getMonthInt(m);
     bookDB booking = getBookingDB();
     int morning = 4;
