@@ -41,9 +41,22 @@ int saveBookingDB(int room, int day, int month, int year, int startTime, int end
 
     file = fopen(BOOKING_DB_PATH, "a+");
     fprintf(file,"%d %d %d %d %d %d %d\n", room, day, month, year, startTime, endTime, studentID);
+
     fclose(file);
     
-    return 0;
+    return 1;
+}
+
+int updateBookingDB(bookDB update) {
+    FILE *file;
+    int i;
+    
+    file = fopen(BOOKING_DB_PATH, "w+");
+    for(i = 0; i < update.arrLength; i++) {
+        fprintf(file,"%d %d %d %d %d %d %d\n", update.room[i], update.day[i], update.month[i], update.year[i], update.startTime[i], update.endTime[i], update.studentID[i]);
+    }
+    
+    return 1;
 }
 
 int saveUserDB(int id, char ipass[], char fname[], char lname[], char mobile[]) {

@@ -11,6 +11,7 @@ int booking() {
     
     
     bookDB booking = getBookingDB();
+    int msg;
     int check = 1;
     int a;
     
@@ -51,9 +52,12 @@ int booking() {
                     break;
                 }
             }
-            
+
             if(check) {
-                saveBookingDB(room, day, month, year, startTime, endTime, STUDENT_ID);
+                msg = saveBookingDB(room, day, month, year, startTime, endTime, STUDENT_ID);
+                if(msg) {
+                    printf("You are booking successfully");
+                }
             } else {
                 printf("Room is not avilable");
             }
