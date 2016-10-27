@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <time.h>
+#include <stdlib.h>
 
 char *writeRoom(int roomId, int day, char m[], int justLast) {
-    char *text[20];
+    char *text = malloc(20);
     int month = getMonthInt(m);
     bookDB booking = getBookingDB();
     int morning = 4;
