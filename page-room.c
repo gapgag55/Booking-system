@@ -6,7 +6,7 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
     int month = getMonthInt(m);
     bookDB booking = getBookingDB();
     int morning = 4;
-    int afternoon = 3;
+    int afternoon = 4;
     int room;
     
     int a;
@@ -16,10 +16,10 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
     
     for(a = 0; a < booking.arrLength; a++) {
         if(booking.room[a] == room && booking.day[a] == day && booking.month[a] == month) {
-            if(*booking.startTime < 13) {
+            if(booking.startTime[a] < 13) {
                 morning -= 1;
             } else {
-                if(((*booking.startTime >= 13) && (*booking.startTime <= 15)) || (*booking.startTime > 15 && *booking.startTime <= 17)) {
+                if(((booking.startTime[a] >= 13) && (booking.startTime[a] <= 15)) || (booking.startTime[a] > 15 && booking.startTime[a] <= 17)) {
                     afternoon -= 1;
                 }
             }
@@ -32,9 +32,9 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
     
     if(check) {
         if(justLast) {
-            sprintf(text,"%s", "7(M,A)");
+            sprintf(text,"%s", "8(M,A)");
         } else {
-            sprintf(text, " IT%3d 7(M,A) ", room);
+            sprintf(text, " IT%3d 8(M,A) ", room);
         }
     } else {
         if(morning > 0 && afternoon > 0) {
@@ -45,7 +45,7 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
             }
         } else if (morning > 0) {
             if(justLast) {
-                sprintf(text, "%d%s  ", morning + afternoon,"(M)");
+                sprintf(text, "%d%s ", morning + afternoon, "(M)");
             } else {
                 sprintf(text, " IT%3d %d%s   ", room, morning + afternoon, "(M)");
             }
@@ -203,9 +203,9 @@ int getCalendar(char m[]) {
 
 int getDailyView(int day, char m[]) {
     int row = 6;
-    int column = 9;
+    int column = 10;
     char textRoom[6];
-    char head[10][12] = {"ROOM", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "16:00-17.00", "Summary"};
+    char head[10][12] = {"ROOM", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16.00","16:00-17.00", "Summary"};
     
     int month = getMonthInt(m);
     bookDB booking = getBookingDB();
@@ -241,18 +241,16 @@ int getDailyView(int day, char m[]) {
                     } else {
                         for(c = 0; c < booking.arrLength; c++) {
                             if(booking.room[c] == getRoom(a) && booking.day[c] == day && booking.month[c] == month) {
-                                if(b == 7) booking.startTime[c] -=  1;
-                                if(booking.startTime[c] == (8+b) && b != 8) {
+                                if(booking.startTime[c] == (8+b)) {
                                     printf("     X     ");
                                     check = 1;
                                     break;
                                 }
-                                if(b == 7) booking.startTime[c] += 1;
                             }
                         }
-                        if(check == 0 && b != 8) {
+                        if(check == 0 && b != 9) {
                             printf("           ");
-                        } else if(b == 8) {
+                        } else if(b == 9) {
                             printf("   %s  ",  writeRoom(a, day, m, 1));
                         }
                     }
