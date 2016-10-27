@@ -68,6 +68,8 @@ char *getMonth(int order) {
     return month;
 }
 
+// getMonthInt("Nov");
+
 int getMonthInt(char m[]) {
     
     if(strcmp(m,"Jan") == 0) {
@@ -92,11 +94,11 @@ int getMonthInt(char m[]) {
         return 9;
     } else if(strcmp(m,"Nov") == 0) {
         return 10;
-    } else {
+    } else if(strcmp(m, "Dec") == 0){
         return 11;
+    } else {
+        return -1;
     }
-    
-    return 0;
 }
 
 int getRoom(int id) {
