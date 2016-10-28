@@ -10,7 +10,7 @@ int loginPage() {
     printf("Login Page\n");
     
     do {
-        printf("Student ID: ");
+        printf("\nStudent ID: ");
         scanf("%d", &student_id);
         
         printf("Password: ");

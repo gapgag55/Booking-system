@@ -11,7 +11,9 @@ int bookingReport() {
         int a,b,c;
         int has = 0;
         int row = 0;
-        char name[7];
+        
+        userDB user;
+        char name[20];
         
         for(i = 0; i < booking.arrLength; i++) {
             if(booking.studentID[i] == STUDENT_ID) {
@@ -26,7 +28,8 @@ int bookingReport() {
                 ++row;
                 
                 if(!name[0]) {
-                    sprintf(name, "%s", "Kopkap");
+                    user = getUserDB(STUDENT_ID);
+                    sprintf(name, "%s %s", user.fname[i], user.lname[i]);
                 }
             }
         }
@@ -62,7 +65,7 @@ int bookingReport() {
                             } else if(b == 1) {
                                 printf("%7d %3s    ", bookUser.day[i], getMonth(bookUser.month[i]));
                             } else {
-                                printf("%4d.00-%d.00  ", bookUser.startTime[i], bookUser.endTime[i]);
+                                printf("%7.2f-%-5.2f  ", (float) bookUser.startTime[i], (float) bookUser.endTime[i]);
                             }
                         }
                     }

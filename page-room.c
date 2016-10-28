@@ -274,7 +274,7 @@ int roomAbilityPage() {
     int day;
     char view;
     
-    if(STUDENT_ID == 0) {
+    if(STUDENT_ID) {
         printf("Room Ability page\n");
         
         printf("Please select a style to show the available meeting rooms: monthly view (m or M) and daily view (d or D): ");
@@ -301,8 +301,10 @@ int roomAbilityPage() {
             printf("No matching\n");
         }
     } else {
-        printf("You are not logged!\n");
+        printf("You are not logged!");
     }
+    
+    printf("\n\n");
            
     return 0;
 }
