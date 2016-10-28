@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
+#include <stdlib.h>
 
 int STUDENT_ID = 0;
 
@@ -30,7 +32,7 @@ int main() {
     menus('p', 'P', "booking report");
     
     while(1) {
-        printf("Enter menu:");
+        printf("Enter menu: ");
         scanf(" %c", &choice);
         
             if(choice == 'r' || choice == 'R') {

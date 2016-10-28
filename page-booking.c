@@ -31,9 +31,6 @@ int booking() {
             printf("Enter your month: ");
             scanf("%d", &month);
             
-            printf("Enter your year: ");
-            scanf("%d", &year);
-            
             printf("Enter your start time: ");
             scanf("%d", &startTime);
             
@@ -47,19 +44,19 @@ int booking() {
             
             
             for (a = 0; a < booking.arrLength; a++) {
-                if ((room == booking.room[a] && day == booking.day[a] && month == booking.month[a] && year == booking.year[a]) && (startTime == booking.startTime[a] || endTime == booking.endTime[a])) {
+                if ((room == booking.room[a] && day == booking.day[a] && month == booking.month[a]) && (startTime == booking.startTime[a] || endTime == booking.endTime[a])) {
                     check = 0;
                     break;
                 }
             }
 
             if(check) {
-                msg = saveBookingDB(room, day, month, year, startTime, endTime, STUDENT_ID);
+                msg = saveBookingDB(room, day, month, startTime, endTime, STUDENT_ID);
                 if(msg) {
-                    printf("You are booking successfully");
+                    printf("You are booking successfully\n");
                 }
             } else {
-                printf("Room is not avilable");
+                printf("Room is not avilable\n");
             }
             
             break;
@@ -67,7 +64,7 @@ int booking() {
         }
         
     } else {
-        printf("You are not logged!");
+        printf("You are not logged!\n");
     }
     
     return 0;

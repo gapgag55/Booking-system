@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 int bookingCancellation() {
     
     printf("Booking cancellation page");

@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 char *writeRoom(int roomId, int day, char m[], int justLast) {
     char *text = malloc(20);
     int month = getMonthInt(m);
@@ -39,7 +36,7 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
     } else {
         if(morning > 0 && afternoon > 0) {
             if(justLast) {
-                sprintf(text, "%d%s  ", morning + afternoon, "(M,A)");
+                sprintf(text, "%d%s", morning + afternoon, "(M,A)");
             } else {
                 sprintf(text, " IT%3d %d%s ", room, morning + afternoon, "(M,A)");
             }
@@ -74,13 +71,9 @@ int getCalendar(char m[]) {
     
     int column = 7;
     int subRow = 7;
-    int row = (maxDay + start) / 7;
+    float row = (maxDay + start) / 7;
     if(row >= 5) {
-        if(row % 5 == 0) {
-            row = 5;
-        } else {
-            row = 6;
-        }
+        row = 6;
     } else {
         row = 5;
     }
@@ -297,17 +290,18 @@ int roomAbilityPage() {
             
         } else if(view == 'd' || view == 'D') {
             do {
-                printf("Enter your date [Ex. 10 Jan]: ");
-                scanf(" %d %s", &day, month);
+    
+                printf("Enter your date [Eg. 10 Jan]: ");
+                scanf("%d %s", &day, month);
                 
             } while (day < 1 && strlen(month) < 1);
             
             getDailyView(day, month);
         } else {
-            printf("No matching");
+            printf("No matching\n");
         }
     } else {
-        printf("You are not logged!");
+        printf("You are not logged!\n");
     }
            
     return 0;

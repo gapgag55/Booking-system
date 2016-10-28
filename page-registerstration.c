@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 int registrationPage() {
     
     char fname[30];

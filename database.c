@@ -6,7 +6,6 @@ typedef struct {
     int room[1000];
     int day[1000];
     int month[1000];
-    int year[1000];
     int startTime[1000];
     int endTime[1000];
     int studentID[1000];
@@ -22,7 +21,7 @@ bookDB getBookingDB() {
     file = fopen(BOOKING_DB_PATH, "r");
     
     while (1) {
-        int stop = fscanf(file, "%d %d %d %d %d %d %d", &books.room[c], &books.day[c], &books.month[c], &books.year[c], &books.startTime[c], &books.endTime[c], &books.studentID[c]);
+        int stop = fscanf(file, "%d %d %d %d %d %d", &books.room[c], &books.day[c], &books.month[c], &books.startTime[c], &books.endTime[c], &books.studentID[c]);
         
         if(stop == EOF) break;
         
@@ -36,11 +35,11 @@ bookDB getBookingDB() {
 }
 
 
-int saveBookingDB(int room, int day, int month, int year, int startTime, int endTime, int studentID) {
+int saveBookingDB(int room, int day, int month, int startTime, int endTime, int studentID) {
     FILE *file;
 
     file = fopen(BOOKING_DB_PATH, "a+");
-    fprintf(file,"%d %d %d %d %d %d %d\n", room, day, month, year, startTime, endTime, studentID);
+    fprintf(file,"%d %d %d %d %d %d\n", room, day, month, startTime, endTime, studentID);
 
     fclose(file);
     
@@ -53,7 +52,7 @@ int updateBookingDB(bookDB update) {
     
     file = fopen(BOOKING_DB_PATH, "w+");
     for(i = 0; i < update.arrLength; i++) {
-        fprintf(file,"%d %d %d %d %d %d %d\n", update.room[i], update.day[i], update.month[i], update.year[i], update.startTime[i], update.endTime[i], update.studentID[i]);
+        fprintf(file,"%d %d %d %d %d %d\n", update.room[i], update.day[i], update.month[i], update.startTime[i], update.endTime[i], update.studentID[i]);
     }
     
     return 1;
