@@ -22,40 +22,40 @@ char *getMonth(int order) {
     char *month;
     
     switch (order) {
-        case 1:
+        case 0:
             month = "Jan";
             break;
-        case 2:
+        case 1:
             month = "Feb";
             break;
-        case 3:
+        case 2:
             month = "Mar";
             break;
-        case 4:
+        case 3:
             month = "Api";
             break;
-        case 5:
+        case 4:
             month = "May";
             break;
-        case 6:
+        case 5:
             month = "Jun";
             break;
-        case 7:
+        case 6:
             month = "July";
             break;
-        case 8:
+        case 7:
             month = "Aug";
             break;
-        case 9:
+        case 8:
             month = "Sep";
             break;
-        case 10:
+        case 9:
             month = "Oct";
             break;
-        case 11:
+        case 10:
             month = "Nov";
             break;
-        case 12:
+        case 11:
             month = "Dec";
             break;
         default:

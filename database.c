@@ -63,8 +63,10 @@ int updateBookingDB(bookDB update) {
     
     file = fopen(BOOKING_DB_PATH, "w+");
     for(i = 0; i < update.arrLength; i++) {
+        printf("%d %d %d %d %d %d\n", update.room[i], update.day[i], update.month[i], update.startTime[i], update.endTime[i], update.studentID[i]);
         fprintf(file,"%d %d %d %d %d %d\n", update.room[i], update.day[i], update.month[i], update.startTime[i], update.endTime[i], update.studentID[i]);
     }
+    fclose(file);
     
     return 1;
 }

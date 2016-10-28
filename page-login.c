@@ -16,14 +16,14 @@ int loginPage() {
         printf("Password: ");
         scanf("%s", password);
         
-        if(numlen(student_id) != 7 || strlen(password) == 0) {
+        if(numlen(student_id) != 7) {
             printf("Student ID or Password: Wrong\n");
             continue;
         }
         
         for(a = 0; a < user.arrLength; a++) {
             if(student_id == user.studentID[a]) {
-                if(strcmp(password, user.password[a])) {
+                if(strcmp(password, user.password[a]) == 0) {
                     check = 1;
                     student_id = user.studentID[a];
                     break;
@@ -35,6 +35,7 @@ int loginPage() {
             printf("Wrong: Student ID or Password");
         } else {
             printf("\nNow you can start using the system");
+            break;
         }
     
         
