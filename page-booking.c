@@ -39,6 +39,11 @@ int booking() {
                 continue;
             }
             
+            if(startTime > endTime) {
+                printf("\nYour time is invalid\n");
+                continue;
+            }
+            
             
             for (a = 0; a < booking.arrLength; a++) {
                 if ((room == booking.room[a] && day == booking.day[a] && month == booking.month[a]) && (startTime == booking.startTime[a] || endTime == booking.endTime[a])) {
@@ -46,7 +51,7 @@ int booking() {
                     break;
                 }
             }
-
+            
             if(check) {
                 msg = saveBookingDB(room, day, month, startTime, endTime, STUDENT_ID);
                 if(msg) {

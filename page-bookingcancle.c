@@ -54,8 +54,8 @@ int bookingCancellation() {
                 }
             }
             updateBook.arrLength = count;
-           
             check = updateBookingDB(updateBook);
+            
             if(check) printf("you success fully canclel booking for the room no. %d at time %d.00am - %d.00am",croom,cstr,cend);
         
         } else {

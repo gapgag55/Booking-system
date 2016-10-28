@@ -1,6 +1,6 @@
 char menus(char lower, char upper, char text[]) {
     
-    printf("\tEnter %c or %c for\t%s\n\n", lower, upper, text);
+    printf("\tEnter %c or %c for\t%s\n", lower, upper, text);
     return 0;
 }
 
@@ -41,7 +41,7 @@ char *getMonth(int order) {
             month = "Jun";
             break;
         case 6:
-            month = "July";
+            month = "Jul";
             break;
         case 7:
             month = "Aug";

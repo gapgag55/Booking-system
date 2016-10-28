@@ -33,7 +33,7 @@ int main() {
     	menus('p', 'P', "booking report");
     
     
-        printf("Enter menu: ");
+        printf("\nEnter menu: ");
         scanf(" %c", &choice);
         
             if(choice == 'r' || choice == 'R') {
