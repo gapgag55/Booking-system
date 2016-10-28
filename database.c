@@ -13,6 +13,17 @@ typedef struct {
     
 } bookDB;
 
+typedef struct {
+    
+    int studentID[1000];
+    char password[1000][100];
+    char fname[1000][100];
+    char lname[1000][100];
+    char mobile[1000][10];
+    int arrLength;
+    
+} userDB;
+
 bookDB getBookingDB() {
     FILE *file;
     int c = 0;
@@ -66,4 +77,31 @@ int saveUserDB(int id, char ipass[], char fname[], char lname[], char mobile[]) 
     fclose(file);
     
     return 0;
+}
+
+userDB getUserDB(int studentID) {
+    FILE *file;
+    int c = 0;
+    userDB users;
+    int stop;
+    
+    file = fopen(USER_DB_PATH, "r");
+    
+    // FOR LOGIN
+    if(studentID == 1) {
+        while (1) {
+            stop = fscanf(file, "%d %s %s %s %s", &users.studentID[c], users.password[c], users.fname[c], users.lname[c], users.mobile[c]);
+            
+            if(stop == EOF) break;
+            
+            users.arrLength = c + 1;
+            c = users.arrLength;
+        }
+        
+    } else {
+        // CHECK STUDENT ID
+    }
+    fclose(file);
+    
+    return users;
 }

@@ -1,10 +1,8 @@
-#define id 5988014
-
 int bookingReport() {
     
-    printf("-------------Booking page-------------\n\n");
+    printf("-------------Booking report page-------------\n\n");
     
-    if(id) {
+    if(STUDENT_ID) {
         bookDB booking = getBookingDB();
         bookDB bookUser;
         char head[4][5] = {"Room", "Date", "Time"};
@@ -16,7 +14,7 @@ int bookingReport() {
         char name[7];
         
         for(i = 0; i < booking.arrLength; i++) {
-            if(booking.studentID[i] == id) {
+            if(booking.studentID[i] == STUDENT_ID) {
             
                 bookUser.room[row]      = booking.room[i];
                 bookUser.day[row]       = booking.day[i];
@@ -81,6 +79,6 @@ int bookingReport() {
     } else {
          printf("You are not logged!");
     }
-    printf("\n");
+    printf("\n\n");
     return 0;
 }

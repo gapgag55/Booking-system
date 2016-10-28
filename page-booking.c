@@ -1,11 +1,8 @@
-#include <stdio.h>
-
 int booking() {
     
     int room;
     int day;
     int month;
-    int year;
     int startTime;
     int endTime;
     
@@ -18,7 +15,7 @@ int booking() {
     printf("-------------Booking page-------------\n");
     
     
-    if(STUDENT_ID == 0) {
+    if(STUDENT_ID) {
         
         while (1) {
             printf("Enter your room: ");

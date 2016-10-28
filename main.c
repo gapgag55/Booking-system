@@ -21,17 +21,18 @@ int main() {
     
     char choice;
     
-    printf("\t\tICT MEETING ROOM SYSTEM\n\n");
-    
-    menus('r', 'R', "user registration");
-    menus('i', 'I', "login");
-    menus('o', 'O', "logout");
-    menus('a', 'A', "room availability");
-    menus('b', 'B', "booking");
-    menus('c', 'C', "booking cancellation");
-    menus('p', 'P', "booking report");
-    
     while(1) {
+    	printf("\t\tICT MEETING ROOM SYSTEM\n\n");
+    
+    	menus('r', 'R', "user registration");
+    	menus('i', 'I', "login");
+    	menus('o', 'O', "logout");
+    	menus('a', 'A', "room availability");
+    	menus('b', 'B', "booking");
+    	menus('c', 'C', "booking cancellation");
+    	menus('p', 'P', "booking report");
+    
+    
         printf("Enter menu: ");
         scanf(" %c", &choice);
         
