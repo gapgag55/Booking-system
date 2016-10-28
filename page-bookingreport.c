@@ -14,6 +14,7 @@ int bookingReport() {
         
         userDB user;
         char name[20];
+        name[0] = 0;
         
         for(i = 0; i < booking.arrLength; i++) {
             if(booking.studentID[i] == STUDENT_ID) {
@@ -29,7 +30,7 @@ int bookingReport() {
                 
                 if(!name[0]) {
                     user = getUserDB(STUDENT_ID);
-                    sprintf(name, "%s %s", user.fname[i], user.lname[i]);
+                    sprintf(name, "%s %s", user.fname[0], user.lname[0]);
                 }
             }
         }

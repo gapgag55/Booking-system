@@ -1,6 +1,6 @@
 char *writeRoom(int roomId, int day, char m[], int justLast) {
     char *text = malloc(20);
-    int month = getMonthInt(m);
+    int month = getMonthInt(m) + 1;
     bookDB booking = getBookingDB();
     int morning = 4;
     int afternoon = 4;
@@ -200,7 +200,7 @@ int getDailyView(int day, char m[]) {
     char textRoom[6];
     char head[10][12] = {"ROOM", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16.00","16:00-17.00", "Summary"};
     
-    int month = getMonthInt(m);
+    int month = getMonthInt(m) + 1;
     bookDB booking = getBookingDB();
     
     int a,b,c;

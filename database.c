@@ -85,12 +85,12 @@ userDB getUserDB(int studentID) {
     FILE *file;
     int c = 0;
     userDB users;
-    int stop;
+    userDB user;
+    int stop, i = 0;
     
     file = fopen(USER_DB_PATH, "r");
     
     // FOR LOGIN
-    if(studentID == 1) {
         while (1) {
             stop = fscanf(file, "%d %s %s %s %s", &users.studentID[c], users.password[c], users.fname[c], users.lname[c], users.mobile[c]);
             
@@ -99,11 +99,21 @@ userDB getUserDB(int studentID) {
             users.arrLength = c + 1;
             c = users.arrLength;
         }
-        
-    } else {
-        // CHECK STUDENT ID
-    }
     fclose(file);
+    
+    if(studentID != 1) {
+        while(i < users.arrLength) {
+            if(users.studentID[i] == studentID) {
+                sprintf(user.fname[0], "%s", users.fname[i]);
+                sprintf(user.lname[0], "%s", users.lname[i]);
+                
+                break;
+            }
+            i++;
+        }
+        return user;
+    }
+    
     
     return users;
 }
