@@ -7,6 +7,8 @@ int loginPage() {
     int check = 0;
     int a;
     
+    if(STUDENT_ID == 0) {
+    
     printf("Login Page\n");
     
     do {
@@ -40,6 +42,10 @@ int loginPage() {
     
         
     } while (!check);
+        
+    } else {
+        printf("You are logged!");
+    }
     
     printf("\n\n");
     return student_id;
