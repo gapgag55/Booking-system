@@ -95,7 +95,7 @@ int getMonthInt(char m[]) {
     } else if(strcmp(m,"Dec") == 0 || strcmp(m, "dec") == 0) {
         return 12;
     } else {
-        return -1;
+        return 0;
     }
 }
 

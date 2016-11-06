@@ -302,7 +302,7 @@ int roomAbilityPage() {
                 
             } while ((dayInt < 1 && strlen(month) < 1) || (dayInt == 0 || atoi(month)));
             
-            if(getMonthInt(month) != -1) {
+            if(getMonthInt(month) != 0) {
                 getDailyView(dayInt, month);
             } else {
                 printf("\nDoesn't exist room.\n");
