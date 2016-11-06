@@ -5,21 +5,24 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
     int morning = 4;
     int afternoon = 4;
     int room;
-    
+
     int a;
     int check = 1;
-    
+
     room = getRoom(roomId);
-    
+
     for(a = 0; a < booking.arrLength; a++) {
         if(booking.room[a] == room && booking.day[a] == day && booking.month[a] == month) {
-        
-            if(booking.startTime[a] < 13) {
+            while(booking.startTime[a]!=booking.endTime[a])
+            {
+              if(booking.startTime[a]<13) {
                 morning -= 1;
             } else {
-                if(((booking.startTime[a] >= 13) && (booking.startTime[a] <= 15)) || (booking.startTime[a] > 15 && booking.startTime[a] <= 17)) {
+                if(booking.startTime[a]>=13) {
                     afternoon -= 1;
                 }
+            }
+                booking.startTime[a]+=1;
             }
             check = 0;
         } else {
@@ -27,7 +30,7 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
         }
     }
 
-    
+
     if(check) {
         if(justLast) {
             sprintf(text,"%s", "8(M,A)");
@@ -47,11 +50,18 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
             } else {
                 sprintf(text, " IT%3d %d%s   ", room, morning + afternoon, "(M)");
             }
-        } else {
+        } else if(afternoon > 0){
             if(justLast) {
                 sprintf(text, "%d%s  ", morning + afternoon, "(A)");
             } else {
                 sprintf(text, " IT%3d %d%s   ", room, morning + afternoon, "(A)");
+            }
+        } else
+        {
+            if(justLast) {
+                text=" FULL ";
+            } else {
+                sprintf(text, " IT%3d FULL   ", room);
             }
         }
     }
@@ -59,17 +69,17 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
 }
 
 int getCalendar(char m[]) {
-    
+
     char days[7][4] = {"Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
     int startMonth[12] = {5,1,2,5,1,3,5,1,4,6,2,4};
     int maxDays[12] = {31,29,31,30,31,30,31,31,30,31,30,31};
-    
+
     int first_s = startMonth[getMonthInt(m)];
     int start = first_s;
     int maxDay = maxDays[getMonthInt(m)];
     int countDay = 1;
     int roomDay = 1;
-    
+
     int column = 7;
     int subRow = 7;
     float row = (maxDay + start) / 7;
@@ -78,8 +88,8 @@ int getCalendar(char m[]) {
     } else {
         row = 5;
     }
-    
-    
+
+
     /*======= HEAD =======*/
     int a,b,c,d;
     for (a = 0; a < 3; a++) {
@@ -106,8 +116,8 @@ int getCalendar(char m[]) {
         }
         printf("\n");
     }
-    
-    
+
+
     // DAYS
     for(a = 0; a < row; a++) {
         for(b = 0; b < subRow; b++) {
@@ -138,7 +148,7 @@ int getCalendar(char m[]) {
                             if(c == 0) {
                                 printf("|    ");
                             } else {
-                                
+
                                 // EDIT HERE
                                 if(roomDay <= maxDay) {
                                     printf("%s ", writeRoom(b, roomDay, m, 0));
@@ -190,8 +200,8 @@ int getCalendar(char m[]) {
         }
         printf("\n");
     }
-    
-    
+
+
     return 0;
 }
 
@@ -200,16 +210,15 @@ int getDailyView(int day, int month) {
     int column = 10;
     char textRoom[6];
     char head[10][12] = {"ROOM", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16.00","16:00-17.00", "Summary"};
-    
     bookDB booking = getBookingDB();
-    
+
     int a,b,c;
     int check = 0;
     
     printf("\nYou are looking: %d %s\n\n", day, getMonth(month));
     
     for(a = 0; a < row; a++) {
-        
+
         // HEAD
         printf("|");
         for(b = 0; b < column; b++) {
@@ -219,7 +228,7 @@ int getDailyView(int day, int month) {
             printf("|");
         }
         printf("\n");
-        
+
         // INFO
             for(b = 0; b < column; b++) {
                 printf("|");
@@ -236,8 +245,9 @@ int getDailyView(int day, int month) {
                     } else {
                         for(c = 0; c < booking.arrLength; c++) {
                             if(booking.room[c] == getRoom(a) && booking.day[c] == day && booking.month[c] == month) {
-                                if(booking.startTime[c] == (8+b)) {
+                                if(booking.startTime[c] == (8+b)&&booking.startTime[c]!= booking.endTime[c]) {
                                     printf("     X     ");
+                                    booking.startTime[c]=booking.startTime[c]+1;
                                     check = 1;
                                     break;
                                 }
@@ -254,7 +264,7 @@ int getDailyView(int day, int month) {
             }
         printf("|");
         printf("\n");
-        
+
         if(a == row - 1) {
             printf("|");
             for(b = 0; b < column; b++) {
@@ -266,35 +276,47 @@ int getDailyView(int day, int month) {
             printf("\n");
         }
     }
-    
+
     return 0;
 }
 
 int roomAbilityPage() {
-    
+
     char month[3];
     char day[10];
     int dayInt;
     int monthInt;
     char view;
-    
+
     if(STUDENT_ID) {
         printf("Room Ability page\n");
-        
+
         printf("Please select a style to show the available meeting rooms: monthly view (m or M) and daily view (d or D): ");
-        
+
         scanf(" %c", &view);
-        
+
         if(view == 'm' || view == 'M') {
             printf("Enter your month [Jan, Feb, Mar, Api, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]: ");
             scanf("%s", month);
             printf("\n");
             
-            getCalendar(month);
-            
+            if(strlen(month) != 3) {
+                printf("invalid input");
+            } else {
+                if(getMonthInt(month)) {
+                    
+                    printMonth(month);
+                    getCalendar(month);
+                    
+                } else {
+                    printf("invalid input");
+                }
+            }
+
+
         } else if(view == 'd' || view == 'D') {
             do {
-    
+
                 printf("Enter your date [Eg. 10 Jan]: ");
                 
                 scanf("%s", day);
@@ -313,8 +335,8 @@ int roomAbilityPage() {
     } else {
         printf("You are not logged!");
     }
-    
+
     printf("\n\n");
-           
+
     return 0;
 }

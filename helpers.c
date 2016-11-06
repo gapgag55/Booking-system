@@ -1,5 +1,5 @@
 char menus(char lower, char upper, char text[]) {
-    
+
     printf("\tEnter %c or %c for\t%s\n", lower, upper, text);
     return 0;
 }
@@ -7,11 +7,11 @@ char menus(char lower, char upper, char text[]) {
 int numlen(int num) {
     int count = 0;
     int mod;
-    
+
     while(num > 0) {
         num = num / 10;
         mod = num % 1;
-        
+
         num = num - mod;
         ++count;
     }
@@ -20,7 +20,7 @@ int numlen(int num) {
 
 char *getMonth(int order) {
     char *month;
-    
+
     switch (order) {
         case 1:
             month = "Jan";
@@ -62,11 +62,10 @@ char *getMonth(int order) {
             month = "Error";
             break;
     }
-    
+
     return month;
 }
 
-// getMonthInt("Nov");
 
 int getMonthInt(char m[]) {
     
@@ -101,7 +100,7 @@ int getMonthInt(char m[]) {
 
 int getRoom(int id) {
     int room;
-    
+
     switch (id) {
         case 1:
             room = 101;
@@ -119,6 +118,38 @@ int getRoom(int id) {
             room = 105;
             break;
     }
-    
+
     return room;
+}
+
+int printMonth(char m[]) {
+    
+    if(strcmp(m,"Jan") == 0 || strcmp(m,"jan") == 0) {
+        printf("The monthly view of all meeting room on January 2016\n");
+    } else if(strcmp(m,"Feb") == 0 || strcmp(m,"feb") == 0) {
+        printf("The monthly view of all meeting room on February 2016\n");
+    } else if(strcmp(m,"Mar") == 0 || strcmp(m,"mar") == 0) {
+        printf("The monthly view of all meeting room on March 2016\n");
+    } else if(strcmp(m,"Api") == 0 || strcmp(m,"api") == 0) {
+        printf("The monthly view of all meeting room on April 2016\n");
+    } else if(strcmp(m,"May") == 0 || strcmp(m,"may") == 0) {
+        printf("The monthly view of all meeting room on May 2016\n");
+    } else if(strcmp(m,"Jun") == 0 || strcmp(m,"jun") == 0) {
+        printf("The monthly view of all meeting room on June 2016\n");
+    } else if(strcmp(m,"Jul") == 0 || strcmp(m,"jul") == 0) {
+        printf("The monthly view of all meeting room on July 2016\n");
+    } else if(strcmp(m,"Aug") == 0 || strcmp(m,"aug") == 0) {
+        printf("The monthly view of all meeting room on August 2016\n");
+    } else if(strcmp(m,"Sep") == 0 || strcmp(m,"sep") == 0) {
+        printf("The monthly view of all meeting room on September 2016");
+    } else if(strcmp(m,"Oct") == 0 || strcmp(m,"oct") == 0) {
+        printf("The monthly view of all meeting room on October 2016\n");
+    } else if(strcmp(m,"Nov") == 0 || strcmp(m,"nov") == 0) {
+        printf("The monthly view of all meeting room on November 2016\n");
+    } else if(strcmp(m, "Dec") == 0 || strcmp(m,"dec") == 0){
+        printf("The monthly view of all meeting room on December\n");
+    } else {
+        return 0;
+    }
+    return 1;
 }
