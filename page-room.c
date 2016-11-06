@@ -195,17 +195,18 @@ int getCalendar(char m[]) {
     return 0;
 }
 
-int getDailyView(int day, char m[]) {
+int getDailyView(int day, int month) {
     int row = 6;
     int column = 10;
     char textRoom[6];
     char head[10][12] = {"ROOM", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00", "14:00-15:00", "15:00-16.00","16:00-17.00", "Summary"};
     
-    int month = getMonthInt(m);
     bookDB booking = getBookingDB();
     
     int a,b,c;
     int check = 0;
+    
+    printf("\nYou are looking: %d %s\n\n", day, getMonth(month));
     
     for(a = 0; a < row; a++) {
         
@@ -245,7 +246,7 @@ int getDailyView(int day, char m[]) {
                         if(check == 0 && b != 9) {
                             printf("           ");
                         } else if(b == 9) {
-                            printf("   %s  ",  writeRoom(a, day, m, 1));
+                            printf("   %s  ",  writeRoom(a, day, getMonth(month), 1));
                         }
                     }
                     check = 0;
@@ -274,6 +275,7 @@ int roomAbilityPage() {
     char month[3];
     char day[10];
     int dayInt;
+    int monthInt;
     char view;
     
     if(STUDENT_ID) {
@@ -299,14 +301,12 @@ int roomAbilityPage() {
                 dayInt = atoi(day);
                 
                 scanf("%s", month);
+                monthInt = getMonthInt(month);
                 
-            } while ((dayInt < 1 && strlen(month) < 1) || (dayInt == 0 || atoi(month)));
+            } while (dayInt < 1 || !monthInt);
             
-            if(getMonthInt(month) != 0) {
-                getDailyView(dayInt, month);
-            } else {
-                printf("\nDoesn't exist room.\n");
-            }
+            getDailyView(dayInt, monthInt);
+            
         } else {
             printf("\nNo matching\n");
         }
