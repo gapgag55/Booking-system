@@ -272,10 +272,11 @@ int getDailyView(int day, char m[]) {
 int roomAbilityPage() {
     
     char month[3];
-    int day;
+    char day[10];
+    int dayInt;
     char view;
     
-    if(STUDENT_ID) {
+    if(STUDENT_ID == 0) {
         printf("Room Ability page\n");
         
         printf("Please select a style to show the available meeting rooms: monthly view (m or M) and daily view (d or D): ");
@@ -293,13 +294,21 @@ int roomAbilityPage() {
             do {
     
                 printf("Enter your date [Eg. 10 Jan]: ");
-                scanf("%d %s", &day, month);
                 
-            } while (day < 1 && strlen(month) < 1);
+                scanf("%s", day);
+                dayInt = atoi(day);
+                
+                scanf("%s", month);
+                
+            } while ((dayInt < 1 && strlen(month) < 1) || (dayInt == 0 || atoi(month)));
             
-            getDailyView(day, month);
+            if(getMonthInt(month) != -1) {
+                getDailyView(dayInt, month);
+            } else {
+                printf("\nDoesn't exist room.\n");
+            }
         } else {
-            printf("No matching\n");
+            printf("\nNo matching\n");
         }
     } else {
         printf("You are not logged!");

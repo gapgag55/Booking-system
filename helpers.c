@@ -70,29 +70,29 @@ char *getMonth(int order) {
 
 int getMonthInt(char m[]) {
     
-    if(strcmp(m,"Jan") == 0) {
+    if(strcmp(m,"Jan") == 0 || strcmp(m, "jan") == 0) {
         return 1;
-    } else if(strcmp(m,"Feb") == 0) {
+    } else if(strcmp(m,"Feb") == 0 || strcmp(m, "feb") == 0) {
         return 2;
-    } else if(strcmp(m,"Mar") == 0) {
+    } else if(strcmp(m,"Mar") == 0 || strcmp(m, "mar") == 0) {
         return 3;
-    } else if(strcmp(m,"Api") == 0) {
+    } else if(strcmp(m,"Api") == 0 || strcmp(m, "api") == 0) {
         return 4;
-    } else if(strcmp(m,"May") == 0) {
+    } else if(strcmp(m,"May") == 0 || strcmp(m, "may") == 0) {
         return 5;
-    } else if(strcmp(m,"Jun") == 0) {
+    } else if(strcmp(m,"Jun") == 0 || strcmp(m, "jun") == 0) {
         return 6;
-    } else if(strcmp(m,"July") == 0) {
+    } else if(strcmp(m,"Jul") == 0 || strcmp(m, "jul") == 0) {
         return 7;
-    } else if(strcmp(m,"Aug") == 0) {
+    } else if(strcmp(m,"Aug") == 0 || strcmp(m, "aug") == 0) {
         return 8;
-    } else if(strcmp(m,"Sep") == 0) {
+    } else if(strcmp(m,"Sep") == 0 || strcmp(m, "sep") == 0) {
         return 9;
-    } else if(strcmp(m,"Oct") == 0) {
+    } else if(strcmp(m,"Oct") == 0 || strcmp(m, "oct") == 0) {
         return 10;
-    } else if(strcmp(m,"Nov") == 0) {
+    } else if(strcmp(m,"Nov") == 0 || strcmp(m, "nov") == 0) {
         return 11;
-    } else if(strcmp(m, "Dec") == 0){
+    } else if(strcmp(m,"Dec") == 0 || strcmp(m, "dec") == 0) {
         return 12;
     } else {
         return -1;
