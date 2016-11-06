@@ -1,6 +1,7 @@
 #define USER_DB_PATH "/Users/sarayutlawilai/Desktop/c/booking-system/booking-system/database/user.txt"
 #define BOOKING_DB_PATH "/Users/sarayutlawilai/Desktop/c/booking-system/booking-system/database/booking.txt"
 
+
 typedef struct {
     
     int room[1000];
@@ -71,14 +72,23 @@ int updateBookingDB(bookDB update) {
     return 1;
 }
 
-int saveUserDB(int id, char ipass[], char fname[], char lname[], char mobile[]) {
+int saveUserDB(char id[], char ipass[], char fname[], char lname[], char mobile[]) {
     FILE *file;
+    bookDB users = getBookingDB();
+    int i;
+    
+    for(i = 0; i < users.arrLength; i++) {
+        printf("%d = %d\n", users.studentID[i], atoi(id));
+        if(users.studentID[i] == atoi(id)) {
+            return 0;
+        }
+    }
     
     file = fopen(USER_DB_PATH, "a+");
-    fprintf(file, "%d %s %s %s %s\n", id, ipass, fname, lname, mobile);
+    fprintf(file, "%s %s %s %s %s\n", id, ipass, fname, lname, mobile);
     fclose(file);
     
-    return 0;
+    return 1;
 }
 
 userDB getUserDB(int studentID) {

@@ -7,9 +7,8 @@ int logoutPage() {
         printf("Goodbye!!!");
         
     } else {
-        printf("You aren't logged");
+        printf("You have not logged");
     }
-    
-    printf("\n\n");
+
     return 0;
 }

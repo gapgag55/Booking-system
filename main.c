@@ -1,7 +1,6 @@
 #include <stdio.h>
-#include <string.h>
-#include <ctype.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 int STUDENT_ID = 0;
 
@@ -18,12 +17,12 @@ int STUDENT_ID = 0;
 
 
 int main() {
-    
+
     char choice;
-    
+
     while(1) {
     	printf("\t\tICT MEETING ROOM SYSTEM\n\n");
-    
+
     	menus('r', 'R', "user registration");
     	menus('i', 'I', "login");
     	menus('o', 'O', "logout");
@@ -31,36 +30,36 @@ int main() {
     	menus('b', 'B', "booking");
     	menus('c', 'C', "booking cancellation");
     	menus('p', 'P', "booking report");
-    
-    
+
+
         printf("\nEnter menu: ");
-        scanf(" %c", &choice);
-        
+        scanf("  %c", &choice);
+
             if(choice == 'r' || choice == 'R') {
                 registrationPage();
-                
+
             } else if(choice == 'i' || choice == 'I') {
                 STUDENT_ID = loginPage();
-                
+
             } else if(choice == 'o' || choice == 'O') {
                 STUDENT_ID = logoutPage();
-                
+
             } else if(choice == 'a' || choice == 'A') {
                 roomAbilityPage();
-                
+
             } else if(choice == 'b' || choice == 'B') {
                 booking();
-                
+
             } else if(choice == 'c' || choice == 'C') {
                 bookingCancellation();
-                
+
             } else if(choice == 'p' || choice == 'P') {
                 bookingReport();
-                
+
             } else {
                 printf("Invalid menu\n");
             }
     }
-    
+
     return 0;
 }
