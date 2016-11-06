@@ -54,9 +54,21 @@ int saveBookingDB(int room, int day, int month, int startTime, int endTime, int 
     FILE *file;
     bookDB books = getBookingDB();
     int i;
+    int time;
     
     for(i = 0; i < books.arrLength; i++) {
-        
+        if(room == books.room[i] && day == books.day[i] && month == books.month[i]) {
+            if(startTime >= books.startTime[i] && startTime <= books.endTime[i]) {
+                if(endTime > books.endTime[i]) {
+                    time = endTime - books.endTime[i];
+                    time = endTime - time;
+                    printf("\nTime: %d.00 - %d.00: is not available\n\n", startTime, time);
+                    return 3;
+                } else {
+                    return 2;
+                }
+            }
+        }
     }
 
     file = fopen(BOOKING_DB_PATH, "a+");

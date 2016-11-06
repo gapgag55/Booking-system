@@ -6,8 +6,6 @@ int booking() {
     int startTime;
     int endTime;
 
-
-    bookDB booking = getBookingDB();
     int msg;
     int check = 1;
     int a;
@@ -35,34 +33,34 @@ int booking() {
             scanf("%d", &endTime);
 
             if(room < 101 || room > 105) {
-                check=0;
+                check = 0;
+                printf("\nRoom isn't available.\n\n");
             }
 
             if(startTime > endTime) {
                 check=0;
+                printf("\nCan't booking your time.\n\n");
             }
-            if(startTime>9&&startTime<16&&endTime>10&&endTime<17)
+            
+            if(startTime < 9 && startTime > 16 && endTime < 10 && endTime > 17)
             {
-                check=0;
+                check = 0;
+                printf("\nCan't booking your time.\n\n");
             }
 
-            for (a = 0; a < booking.arrLength; a++) {
-                if ((room == booking.room[a] && day == booking.day[a] && month == booking.month[a]) && (startTime == booking.startTime[a] || endTime == booking.endTime[a])) {
-                    check = 0;
-                }
-            }
 
             if(check) {
                 msg = saveBookingDB(room, day, month, startTime, endTime, STUDENT_ID);
-                if(msg) {
-                    printf("You are booking successfully\n");
+                
+                if(msg == 1) {
+                    printf("\nYou are booking successfully\n\n");
+                } else {
+                    if(msg != 3) printf("\nRoom is not available.\n\n");
                 }
-            } else {
-                printf("Room is not avilable\n");
+                
+                break;
             }
-
-            break;
-
+            check = 1;
         }
 
     } else {
