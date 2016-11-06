@@ -25,6 +25,9 @@ typedef struct {
     
 } userDB;
 
+userDB getUserDB(int studentID);
+
+
 bookDB getBookingDB() {
     FILE *file;
     int c = 0;
@@ -49,6 +52,12 @@ bookDB getBookingDB() {
 
 int saveBookingDB(int room, int day, int month, int startTime, int endTime, int studentID) {
     FILE *file;
+    bookDB books = getBookingDB();
+    int i;
+    
+    for(i = 0; i < books.arrLength; i++) {
+        
+    }
 
     file = fopen(BOOKING_DB_PATH, "a+");
     fprintf(file,"%d %d %d %d %d %d\n", room, day, month, startTime, endTime, studentID);
@@ -74,11 +83,10 @@ int updateBookingDB(bookDB update) {
 
 int saveUserDB(char id[], char ipass[], char fname[], char lname[], char mobile[]) {
     FILE *file;
-    bookDB users = getBookingDB();
+    userDB users = getUserDB(1);
     int i;
     
     for(i = 0; i < users.arrLength; i++) {
-        printf("%d = %d\n", users.studentID[i], atoi(id));
         if(users.studentID[i] == atoi(id)) {
             return 0;
         }
@@ -101,14 +109,14 @@ userDB getUserDB(int studentID) {
     file = fopen(USER_DB_PATH, "r");
     
     // FOR LOGIN
-        while (1) {
-            stop = fscanf(file, "%d %s %s %s %s", &users.studentID[c], users.password[c], users.fname[c], users.lname[c], users.mobile[c]);
-            
-            if(stop == EOF) break;
-            
-            users.arrLength = c + 1;
-            c = users.arrLength;
-        }
+    while (1) {
+        stop = fscanf(file, "%d %s %s %s %s", &users.studentID[c], users.password[c], users.fname[c], users.lname[c], users.mobile[c]);
+        
+        if(stop == EOF) break;
+        
+        users.arrLength = c + 1;
+        c = users.arrLength;
+    }
     fclose(file);
     
     if(studentID != 1) {
