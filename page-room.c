@@ -276,7 +276,7 @@ int roomAbilityPage() {
     int dayInt;
     char view;
     
-    if(STUDENT_ID == 0) {
+    if(STUDENT_ID) {
         printf("Room Ability page\n");
         
         printf("Please select a style to show the available meeting rooms: monthly view (m or M) and daily view (d or D): ");
