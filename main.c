@@ -18,7 +18,7 @@ int STUDENT_ID = 0;
 
 int main() {
 
-    char choice;
+    char choice[5];
 
     while(1) {
     	printf("\t\tICT MEETING ROOM SYSTEM\n\n");
@@ -33,27 +33,31 @@ int main() {
 
 
         printf("\nEnter menu: ");
-        scanf("  %c", &choice);
+        scanf("  %s", choice);
+        
+        if(atoi(choice)) {
+            continue;
+        }
 
-            if(choice == 'r' || choice == 'R') {
+            if(strcmp(choice, "r") == 0 || strcmp(choice, "R") == 0) {
                 registrationPage();
 
-            } else if(choice == 'i' || choice == 'I') {
+            } else if(strcmp(choice, "i") == 0 || strcmp(choice, "I") == 0) {
                 STUDENT_ID = loginPage();
 
-            } else if(choice == 'o' || choice == 'O') {
+            } else if(strcmp(choice, "o") == 0 || strcmp(choice, "O") == 0) {
                 STUDENT_ID = logoutPage();
 
-            } else if(choice == 'a' || choice == 'A') {
+            } else if(strcmp(choice, "a") == 0 || strcmp(choice, "A") == 0) {
                 roomAbilityPage();
 
-            } else if(choice == 'b' || choice == 'B') {
+            } else if(strcmp(choice, "b") == 0 || strcmp(choice, "B") == 0) {
                 booking();
 
-            } else if(choice == 'c' || choice == 'C') {
+            } else if(strcmp(choice, "c") == 0 || strcmp(choice, "C") == 0) {
                 bookingCancellation();
 
-            } else if(choice == 'p' || choice == 'P') {
+            } else if(strcmp(choice, "p") == 0 || strcmp(choice, "P") == 0) {
                 bookingReport();
 
             } else {
