@@ -6,20 +6,26 @@ int loginPage() {
     char password[100];
     int check = 0;
     int a;
-    
+
     if(!STUDENT_ID) {
-    
+
         printf("Login Page\n");
 
         do {
             printf("\nStudent ID: ");
-            scanf("%d", &student_id);
+            if(scanf("%d", &student_id)==EOF)
+            {
+                break;
+            }
 
             printf("Password: ");
-            scanf("%s", password);
+            if(scanf("%s", password)==EOF)
+            {
+                break;
+            }
 
             if(numlen(student_id) != 7) {
-                printf("Student ID or Password: Wrong\n");
+                printf("Either Student ID or Password is wrong.\n");
                 continue;
             }
 
@@ -34,20 +40,20 @@ int loginPage() {
             }
 
             if(!check) {
-                printf("Wrong: Student ID or Password");
+                printf("Wrong Student ID or Password.");
             } else {
-                printf("\nNow you can start using the system");
+                printf("\nYou can now start using the system.");
                 break;
             }
 
 
         } while (!check);
-            
+
     } else {
         printf("You are logged!");
     }
-    
-    
+
+
     printf("\n\n");
     return student_id;
 }

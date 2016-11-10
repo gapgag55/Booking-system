@@ -26,7 +26,6 @@ typedef struct {
 
 userDB getUserDB(int studentID);
 
-
 bookDB getBookingDB() {
     FILE *file;
     int c = 0;
@@ -54,20 +53,23 @@ int saveBookingDB(int room, int day, int month, int startTime, int endTime, int 
     bookDB books = getBookingDB();
     int i;
     int time;
+    int check = 0;
+
 
     for(i = 0; i < books.arrLength; i++) {
         if(room == books.room[i] && day == books.day[i] && month == books.month[i]) {
-            if(startTime >= books.startTime[i] && startTime <= books.endTime[i]) {
-                if(endTime > books.endTime[i]) {
-                    time = endTime - books.endTime[i];
-                    time = endTime - time;
-                    printf("\nTime: %d.00 - %d.00: is not available\n\n", startTime, time);
-                    return 3;
-                } else {
-                    return 2;
-                }
+
+
+            if(endTime>books.startTime[i]&&startTime<books.endTime[i]) {
+                printf("\nTime: %d.00 - %d.00: is not available\n", books.startTime[i],books.endTime[i]);
+                check = 1;
             }
         }
+    }
+
+    if (check) {
+        printf("\nPlease try again.\n\n");
+        return 2;
     }
 
     file = fopen(BOOKING_DB_PATH, "a+");
@@ -84,7 +86,7 @@ int updateBookingDB(bookDB update) {
 
     file = fopen(BOOKING_DB_PATH, "w+");
     for(i = 0; i < update.arrLength; i++) {
-        printf("%d %d %d %d %d %d\n", update.room[i], update.day[i], update.month[i], update.startTime[i], update.endTime[i], update.studentID[i]);
+
         fprintf(file,"%d %d %d %d %d %d\n", update.room[i], update.day[i], update.month[i], update.startTime[i], update.endTime[i], update.studentID[i]);
     }
     fclose(file);

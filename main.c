@@ -34,13 +34,13 @@ int main() {
 
         printf("\nEnter menu: ");
         scanf("  %s", choice);
-        
+
         if(atoi(choice)) {
             continue;
         }
 
             if(strcmp(choice, "r") == 0 || strcmp(choice, "R") == 0) {
-                registrationPage();
+                STUDENT_ID = registrationPage();
 
             } else if(strcmp(choice, "i") == 0 || strcmp(choice, "I") == 0) {
                 STUDENT_ID = loginPage();

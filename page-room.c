@@ -2,8 +2,8 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
     char *text = malloc(20);
     int month = getMonthInt(m);
     bookDB booking = getBookingDB();
-    int morning = 4;
-    int afternoon = 4;
+    int morning = 3;
+    int afternoon = 5;
     int room;
 
     int a;
@@ -15,10 +15,10 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
         if(booking.room[a] == room && booking.day[a] == day && booking.month[a] == month) {
             while(booking.startTime[a]!=booking.endTime[a])
             {
-              if(booking.startTime[a]<13) {
+              if(booking.startTime[a]<12) {
                 morning -= 1;
             } else {
-                if(booking.startTime[a]>=13) {
+                if(booking.startTime[a]>=12) {
                     afternoon -= 1;
                 }
             }
@@ -46,13 +46,13 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
             }
         } else if (morning > 0) {
             if(justLast) {
-                sprintf(text, "%d%s ", morning + afternoon, "(M)");
+                sprintf(text, "%d%s  ", morning + afternoon, "(M)");
             } else {
                 sprintf(text, " IT%3d %d%s   ", room, morning + afternoon, "(M)");
             }
         } else if(afternoon > 0){
             if(justLast) {
-                sprintf(text, "%d%s  ", morning + afternoon, "(A)");
+                sprintf(text, "%d%s   ", morning + afternoon, "(A)");
             } else {
                 sprintf(text, " IT%3d %d%s   ", room, morning + afternoon, "(A)");
             }
@@ -74,16 +74,18 @@ int getCalendar(char m[]) {
     int startMonth[12] = {5,1,2,5,1,3,5,1,4,6,2,4};
     int maxDays[12] = {31,29,31,30,31,30,31,31,30,31,30,31};
 
-    int first_s = startMonth[getMonthInt(m)];
+    int first_s = startMonth[getMonthInt(m) - 1];
     int start = first_s;
-    int maxDay = maxDays[getMonthInt(m)];
+    int maxDay = maxDays[getMonthInt(m) - 1];
     int countDay = 1;
     int roomDay = 1;
 
     int column = 7;
     int subRow = 7;
     float row = (maxDay + start) / 7;
-    if(row >= 5) {
+    float remain = (maxDay + start) % 7;
+    
+    if(row >= 5 && remain != 0) {
         row = 6;
     } else {
         row = 5;
@@ -214,9 +216,9 @@ int getDailyView(int day, int month) {
 
     int a,b,c;
     int check = 0;
-    
+
     printf("\nYou are looking: %d %s\n\n", day, getMonth(month));
-    
+
     for(a = 0; a < row; a++) {
 
         // HEAD
@@ -281,57 +283,69 @@ int getDailyView(int day, int month) {
 }
 
 int roomAbilityPage() {
-
     char month[3];
     char day[10];
     int dayInt;
     int monthInt;
-    char view;
+    char view[1];
+    int ck=0;
 
     if(STUDENT_ID) {
         printf("Room Ability page\n");
 
-        printf("Please select a style to show the available meeting rooms: monthly view (m or M) and daily view (d or D): ");
+        printf("Please select a style to show the available meeting rooms: monthly view (m or M) and daily view (d or D):");
 
-        scanf(" %c", &view);
-
-        if(view == 'm' || view == 'M') {
-            printf("Enter your month [Jan, Feb, Mar, Api, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]: ");
-            scanf("%s", month);
+        if(scanf("%s",&view) == EOF)
+        {
             printf("\n");
-            
-            if(strlen(month) != 3) {
-                printf("invalid input");
-            } else {
-                if(getMonthInt(month)) {
-                    
-                    printMonth(month);
-                    getCalendar(month);
-                    
-                } else {
+            return 0;
+
+        } else if (strcmp(view, "m") == 0 || strcmp(view, "M") == 0) {
+            printf("Enter your month [Jan, Feb, Mar, Api, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]: ");
+
+            if(scanf("%s", month) != EOF)
+            {
+                printf("\n");
+
+                if(strlen(month) != 3) {
                     printf("invalid input");
+                } else {
+                    if(getMonthInt(month)) {
+
+                        printMonth(month);
+                        getCalendar(month);
+
+                    } else {
+                        printf("invalid input");
+                    }
                 }
             }
-
-
-        } else if(view == 'd' || view == 'D') {
+        } else if(strcmp(view, "d") == 0 || strcmp(view, "D") == 0) {
             do {
 
                 printf("Enter your date [Eg. 10 Jan]: ");
-                
-                scanf("%s", day);
+
+                if(scanf("%s", day) == EOF)
+                {   ck = 1;
+                    break;
+                }
                 dayInt = atoi(day);
-                
+
                 scanf("%s", month);
                 monthInt = getMonthInt(month);
-                
+
             } while (dayInt < 1 || !monthInt);
-            
-            getDailyView(dayInt, monthInt);
-            
+
+            if(ck == 0) {
+                getDailyView(dayInt, monthInt);
+            }
+
         } else {
             printf("\nNo matching\n");
         }
+
+
+
     } else {
         printf("You are not logged!");
     }

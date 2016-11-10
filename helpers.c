@@ -68,7 +68,7 @@ char *getMonth(int order) {
 
 
 int getMonthInt(char m[]) {
-    
+
     if(strcmp(m,"Jan") == 0 || strcmp(m, "jan") == 0) {
         return 1;
     } else if(strcmp(m,"Feb") == 0 || strcmp(m, "feb") == 0) {
@@ -123,7 +123,7 @@ int getRoom(int id) {
 }
 
 int printMonth(char m[]) {
-    
+
     if(strcmp(m,"Jan") == 0 || strcmp(m,"jan") == 0) {
         printf("The monthly view of all meeting room on January 2016\n");
     } else if(strcmp(m,"Feb") == 0 || strcmp(m,"feb") == 0) {
@@ -152,4 +152,40 @@ int printMonth(char m[]) {
         return 0;
     }
     return 1;
+}
+
+int checkDay(int m) {
+    if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
+        return 31;
+    } else if(m == 2) {
+        return 29;
+    } else {
+        return 30;
+    }
+}
+
+char *checkTime(int Time) {
+    char *time;
+    
+    if(Time < 12) {
+        time = "am";
+    } else {
+        time = "pm";
+    }
+    
+    return time;
+}
+
+int checkSunday(int day, int month) {
+    int startMonth[12] = {5,1,2,5,1,3,5,1,4,6,2,4};
+    month = month - 1;
+
+    int week = 7 - startMonth[month];
+    int days = day - week;
+    int sunday = days % 7;
+
+    if(sunday == 1) {
+        return 1;
+    }
+    return 0;
 }
