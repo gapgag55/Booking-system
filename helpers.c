@@ -176,6 +176,14 @@ char *checkTime(int Time) {
     return time;
 }
 
+int timeClock(int Time) {
+    if(Time > 12) {
+        Time = Time - 12;
+    }
+    
+    return Time;
+}
+
 int checkSunday(int day, int month) {
     int startMonth[12] = {5,1,2,5,1,3,5,1,4,6,2,4};
     month = month - 1;

@@ -71,7 +71,7 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
 int getCalendar(char m[]) {
 
     char days[7][4] = {"Sun","Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-    int startMonth[12] = {5,1,2,5,1,3,5,1,4,6,2,4};
+    int startMonth[12] = {5,1,2,5,0,3,5,1,4,6,2,4};
     int maxDays[12] = {31,29,31,30,31,30,31,31,30,31,30,31};
 
     int first_s = startMonth[getMonthInt(m) - 1];

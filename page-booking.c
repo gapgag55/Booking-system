@@ -5,9 +5,15 @@ int booking() {
     int month;
     int startTime;
     int endTime;
+    
+    char roomChar[4];
+    char dayChar[3];
+    char monthChar[3];
+    char startTimeChar[3];
+    char endTimeChar[3];
+    
     int msg;
     int check = 1;
-    int a;
 
     printf("-------------Booking Page-------------\n");
 
@@ -16,32 +22,43 @@ int booking() {
 
         while (1) {
             printf("Enter the room [101-105]: ");
-            if(scanf("%d", &room)==EOF)
+            if(scanf("%s", roomChar)==EOF)
             {
                 break;
             }
             printf("Enter the date: ");
-            if(scanf("%d", &day)==EOF)
+            if(scanf("%s", dayChar)==EOF)
             {
                 break;
             }
-            printf("Enter the month: ");
-            if(scanf("%d", &month)==EOF)
+            printf("Enter the month [1-12]: ");
+            if(scanf("%s", monthChar)==EOF)
             {
                 break;
             }
-            printf("Enter the start time: ");
-            if(scanf("%d", &startTime)==EOF)
+            printf("Enter the start time [9-16]: ");
+            if(scanf("%s", startTimeChar)==EOF)
             {
                 break;
             }
-            printf("Enter the end time: ");
-            if(scanf("%d", &endTime)==EOF)
+            printf("Enter the end time [10-17]: ");
+            if(scanf("%s", endTimeChar)==EOF)
             {
                 break;
+            }
+            
+            room = atoi(roomChar);
+            day = atoi(dayChar);
+            month = atoi(monthChar);
+            startTime = atoi(startTimeChar);
+            endTime = atoi(endTimeChar);
+            
+            if(room == 0 || day == 0 || month == 0 || startTime == 0 || endTime == 0) {
+                printf("\nSomething wrong!!\n");
+                continue;
             }
 
-            if((day<1||day>checkDay(month)) || (month<1||month>12) || (room < 101 || room > 105) || (startTime > endTime) || (startTime < 9 || startTime > 16 || endTime < 10 || endTime > 17)) {
+            if((day<1||day>checkDay(month)) || (month<1||month>12) || (room < 101 || room > 105) || (startTime >= endTime) || (startTime < 9 || startTime > 16 || endTime < 10 || endTime > 17)) {
                 check = 0;
             }
 
@@ -51,8 +68,8 @@ int booking() {
                         msg = saveBookingDB(room, day, month, startTime, endTime, STUDENT_ID);
 
                         if(msg == 1) {
-                            printf("You are successfully booked.");
-                            printf("You habe booked room no. %d on date %d %s, from %d%s - %d%s\n\n", room, day, getMonth(month), startTime, checkTime(startTime), endTime, checkTime(endTime));
+                            printf("\nYou are successfully booked.\n");
+                            printf("You have booked room no. %d on date %d %s, from %d%s - %d%s\n\n", room, day, getMonth(month), timeClock(startTime), checkTime(startTime), timeClock(endTime), checkTime(endTime));
                         }
                         break;
                     }

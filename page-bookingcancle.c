@@ -4,12 +4,21 @@ int bookingCancellation() {
     int cday;
     int cstr;
     int cend;
-    char cmonth[3];
+    int cmonth;
+    
+    char roomChar[4];
+    char dayChar[3];
+    char monthChar[3];
+    char startTimeChar[3];
+    char endTimeChar[3];
+    
+    char start[12];
+    char end[12];
+    
     int count = 0;
     int i;
     int at = 0;
     int check = 0;
-    int ck;
 
     bookDB books = getBookingDB();
     bookDB updateBook;
@@ -17,68 +26,87 @@ int bookingCancellation() {
     printf("-------------Cancle Booking Page-------------\n");
 
     if(STUDENT_ID) {
-        printf("Enter the room: ");
-        if(scanf("%d",&croom)!=EOF)
-        {
-            printf("Enter the date: ");
-            if(scanf("%d",&cday)!=EOF)
+        
+        while(1) {
+            
+            printf("Enter the room [101-105]: ");
+            if(scanf("%s",roomChar)!=EOF)
             {
-                printf("Enter the month: ");
-                if(scanf("%s", cmonth)!=EOF)
+                printf("Enter the date: ");
+                if(scanf("%s", dayChar)!=EOF)
                 {
-                    printf("Enter the start time: ");
-                    if(scanf("%d",&cstr)!=EOF)
+                    printf("Enter the month [1-12]: ");
+                    if(scanf("%s", monthChar)!=EOF)
                     {
-                        printf("Enter the end time: ");
-                        if(scanf("%d",&cend)!=EOF)
+                        printf("Enter the start time [9-16]: ");
+                        if(scanf("%s", startTimeChar)!=EOF)
                         {
-                            for(i = 0; i < books.arrLength; i++)
+                            printf("Enter the end time [10-17]: ");
+                            if(scanf("%s",endTimeChar)!=EOF)
                             {
-                                if(books.room[i] == croom && books.day[i] == cday && books.startTime[i] == cstr && books.endTime[i] == cend && books.studentID[i] == STUDENT_ID)
-                                {
-                                    count++;
-                                    at=i;
+                                croom = atoi(roomChar);
+                                cday = atoi(dayChar);
+                                cmonth = atoi(monthChar);
+                                cstr = atoi(startTimeChar);
+                                cend = atoi(endTimeChar);
+                                
+                                if(croom == 0 || cday == 0 || cmonth == 0 || cstr == 0 || cend == 0) {
+                                    printf("\nSomething wrong!!\n\n");
+                                    continue;
                                 }
-                            }
-                            if(count==1)
+                                
+                                for(i = 0; i < books.arrLength; i++)
                                 {
-                                    count = 0;
-                                    for(i = 0; i < books.arrLength; i++)
+                                    if(books.room[i] == croom && books.day[i] == cday && books.month[i] == cmonth && books.startTime[i] == cstr && books.endTime[i] == cend && books.studentID[i] == STUDENT_ID)
                                     {
-                                        if(i!=at)
+                                        count++;
+                                        at=i;
+                                    }
+                                }
+                                if(count==1)
+                                    {
+                                        count = 0;
+                                        for(i = 0; i < books.arrLength; i++)
                                         {
-                                            updateBook.room[count] = books.room[i];
-                                            updateBook.day[count] = books.day[i];
-                                            updateBook.month[count] = books.month[i];
-                                            updateBook.startTime[count] = books.startTime[i];
-                                            updateBook.endTime[count] = books.endTime[i];
-                                            updateBook.studentID[count] = books.studentID[i];
+                                            if(i!=at)
+                                            {
+                                                updateBook.room[count] = books.room[i];
+                                                updateBook.day[count] = books.day[i];
+                                                updateBook.month[count] = books.month[i];
+                                                updateBook.startTime[count] = books.startTime[i];
+                                                updateBook.endTime[count] = books.endTime[i];
+                                                updateBook.studentID[count] = books.studentID[i];
 
                                                 ++count;
+                                            }
                                         }
+                                        
+                                        updateBook.arrLength = count;
+                                        check = updateBookingDB(updateBook);
+
+
+                                        if(check) {
+                                            sprintf(start, "%s", checkTime(cstr));
+                                            sprintf(end, "%s", checkTime(cend));
+                                            
+                                            printf("\nYou are successfully cancel the booking for the room No. %d between %d%s - %d%s.", croom, timeClock(cstr), checkTime(cstr), timeClock(cend), checkTime(cend));
+                                        }
+
+                                    } else {
+                                        if(!check) printf("\nPlease try again.\n");
                                     }
-                                    updateBook.arrLength = count;
-                                    check = updateBookingDB(updateBook);
+                                
+                                break;
+                                }
 
-
-                                    if(check)
-                                        {
-                                            printf("\nYou are successfully cancel the booking for the room No. %d between %d.00am/pm - %d.00am/pm.", croom, cstr, checkTime(cstr), cend, checkTime(cend));
-                                        }
-
-                                    } else
-                                        {
-                                            if(!check) printf("Please try again.");
-                                        }
                             }
 
-                        }
+                    }
 
                 }
-
             }
-        }
 
+        }
 
     } else {
         printf("You are not logged!\n");

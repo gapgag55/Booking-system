@@ -52,7 +52,6 @@ int saveBookingDB(int room, int day, int month, int startTime, int endTime, int 
     FILE *file;
     bookDB books = getBookingDB();
     int i;
-    int time;
     int check = 0;
 
 
