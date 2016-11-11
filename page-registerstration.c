@@ -9,6 +9,12 @@ int registrationPage() {
     int c = 0;
     int check = 0;
 
+   printf("---------Registration Page---------\n");
+    if(!STUDENT_ID)
+    {
+
+
+
     printf("Enter your first name: ");
     if(scanf("%s", fname) == EOF) { return 0; }
 
@@ -46,7 +52,7 @@ int registrationPage() {
         ++c;
         if(strcmp(ipass, cpass) == 0) {
             c = 0;
-            break;
+         break;
         }
     }
 
@@ -63,15 +69,21 @@ int registrationPage() {
     }
 
 
-    check = saveUserDB(id, ipass, fname, lname, mobile);
+       check = saveUserDB(id, ipass, fname, lname, mobile);
 
     if(check) {
         printf("\nYou are successfully registered.\n");
         printf("Now you can start using the system.\n\n");
         return atoi(id);
     } else {
+
         printf("\nYour student ID is not available.\n\n");
     }
 
     return 0;
+    }else{
+
+        printf("You are logged!\n");
+        return STUDENT_ID;
+    }
 }

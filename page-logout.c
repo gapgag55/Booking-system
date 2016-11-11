@@ -1,13 +1,14 @@
 #include <stdio.h>
 
 int logoutPage() {
-    
+    printf("---------Logout Page---------\n");
     if(STUDENT_ID) {
-        printf("Logout page\n");
+
         printf("Goodbye!!!");
-        
+
     } else {
-        printf("You have not logged");
+
+        printf("You cannot logout because you are not currently logged-in.\n");
     }
 
     return 0;

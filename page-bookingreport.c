@@ -1,7 +1,7 @@
 int bookingReport() {
-    
-    printf("-------------Booking report page-------------\n\n");
-    
+
+    printf("-------------Booking Report Page-------------\n\n");
+
     if(STUDENT_ID) {
         bookDB booking = getBookingDB();
         bookDB bookUser;
@@ -11,30 +11,30 @@ int bookingReport() {
         int a,b,c;
         int has = 0;
         int row = 0;
-        
+
         userDB user;
         char name[20];
         name[0] = 0;
-        
+
         for(i = 0; i < booking.arrLength; i++) {
             if(booking.studentID[i] == STUDENT_ID) {
-            
+
                 bookUser.room[row]      = booking.room[i];
                 bookUser.day[row]       = booking.day[i];
                 bookUser.month[row]     = booking.month[i];
                 bookUser.startTime[row] = booking.startTime[i];
                 bookUser.endTime[row]   = booking.endTime[i];
-                
+
                 has = 1;
                 ++row;
-                
+
                 if(!name[0]) {
                     user = getUserDB(STUDENT_ID);
                     sprintf(name, "%s %s", user.fname[0], user.lname[0]);
                 }
             }
         }
-        
+
         if(has) {
             i = -1;
             printf("Name: %s\n", name);

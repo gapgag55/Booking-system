@@ -23,13 +23,13 @@ int main() {
     while(1) {
     	printf("\t\tICT MEETING ROOM SYSTEM\n\n");
 
-    	menus('r', 'R', "user registration");
-    	menus('i', 'I', "login");
-    	menus('o', 'O', "logout");
-    	menus('a', 'A', "room availability");
-    	menus('b', 'B', "booking");
-    	menus('c', 'C', "booking cancellation");
-    	menus('p', 'P', "booking report");
+    	menus('r', 'R', "User Registration");
+    	menus('i', 'I', "Login");
+    	menus('o', 'O', "Logout");
+    	menus('a', 'A', "Room Availability");
+    	menus('b', 'B', "Booking");
+    	menus('c', 'C', "Booking Cancellation");
+    	menus('p', 'P', "Booking Report");
 
 
         printf("\nEnter menu: ");

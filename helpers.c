@@ -166,13 +166,13 @@ int checkDay(int m) {
 
 char *checkTime(int Time) {
     char *time;
-    
+
     if(Time < 12) {
         time = "am";
     } else {
         time = "pm";
     }
-    
+
     return time;
 }
 
@@ -188,4 +188,35 @@ int checkSunday(int day, int month) {
         return 1;
     }
     return 0;
+}
+int printMonth2(char m[]) {
+
+    if(strcmp(m,"Jan") == 0 || strcmp(m,"jan") == 0) {
+        printf("January 2016");
+    } else if(strcmp(m,"Feb") == 0 || strcmp(m,"feb") == 0) {
+        printf("February 2016\n");
+    } else if(strcmp(m,"Mar") == 0 || strcmp(m,"mar") == 0) {
+        printf("March 2016\n");
+    } else if(strcmp(m,"Api") == 0 || strcmp(m,"api") == 0) {
+        printf("April 2016\n");
+    } else if(strcmp(m,"May") == 0 || strcmp(m,"may") == 0) {
+        printf("May 2016\n");
+    } else if(strcmp(m,"Jun") == 0 || strcmp(m,"jun") == 0) {
+        printf("June 2016\n");
+    } else if(strcmp(m,"Jul") == 0 || strcmp(m,"jul") == 0) {
+        printf("July 2016\n");
+    } else if(strcmp(m,"Aug") == 0 || strcmp(m,"aug") == 0) {
+        printf("August 2016\n");
+    } else if(strcmp(m,"Sep") == 0 || strcmp(m,"sep") == 0) {
+        printf("September 2016");
+    } else if(strcmp(m,"Oct") == 0 || strcmp(m,"oct") == 0) {
+        printf("October 2016\n");
+    } else if(strcmp(m,"Nov") == 0 || strcmp(m,"nov") == 0) {
+        printf("November 2016\n");
+    } else if(strcmp(m, "Dec") == 0 || strcmp(m,"dec") == 0){
+        printf("December\n");
+    } else {
+        return 0;
+    }
+    return 1;
 }

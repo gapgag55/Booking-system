@@ -9,7 +9,7 @@ int booking() {
     int check = 1;
     int a;
 
-    printf("-------------Booking page-------------\n");
+    printf("-------------Booking Page-------------\n");
 
 
     if(STUDENT_ID) {
@@ -20,22 +20,22 @@ int booking() {
             {
                 break;
             }
-            printf("Enter the day: ");
+            printf("Enter the date: ");
             if(scanf("%d", &day)==EOF)
             {
                 break;
             }
-            printf("Enter the month [1-12]: ");
+            printf("Enter the month: ");
             if(scanf("%d", &month)==EOF)
             {
                 break;
             }
-            printf("Enter the start time [9-16]: ");
+            printf("Enter the start time: ");
             if(scanf("%d", &startTime)==EOF)
             {
                 break;
             }
-            printf("Enter the end time [10-17]: ");
+            printf("Enter the end time: ");
             if(scanf("%d", &endTime)==EOF)
             {
                 break;
@@ -51,7 +51,7 @@ int booking() {
                         msg = saveBookingDB(room, day, month, startTime, endTime, STUDENT_ID);
 
                         if(msg == 1) {
-                            printf("\nYour booking successful.\n");
+                            printf("You are successfully booked.");
                             printf("You habe booked room no. %d on date %d %s, from %d%s - %d%s\n\n", room, day, getMonth(month), startTime, checkTime(startTime), endTime, checkTime(endTime));
                         }
                         break;
@@ -66,6 +66,7 @@ int booking() {
         }
 
     } else {
+
         printf("You are not logged!\n");
     }
 

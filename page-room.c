@@ -84,7 +84,7 @@ int getCalendar(char m[]) {
     int subRow = 7;
     float row = (maxDay + start) / 7;
     float remain = (maxDay + start) % 7;
-    
+
     if(row >= 5 && remain != 0) {
         row = 6;
     } else {
@@ -217,8 +217,8 @@ int getDailyView(int day, int month) {
     int a,b,c;
     int check = 0;
 
-    printf("\nYou are looking: %d %s\n\n", day, getMonth(month));
-
+    printf("%d ",day);
+    printMonth2(getMonth(month));
     for(a = 0; a < row; a++) {
 
         // HEAD

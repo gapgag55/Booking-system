@@ -14,22 +14,22 @@ int bookingCancellation() {
     bookDB books = getBookingDB();
     bookDB updateBook;
 
-    printf("-------------Cancle Booking page-------------\n");
+    printf("-------------Cancle Booking Page-------------\n");
 
     if(STUDENT_ID) {
-        printf("Enter the room [101-105]: ");
+        printf("Enter the room: ");
         if(scanf("%d",&croom)!=EOF)
         {
-            printf("Enter the day: ");
+            printf("Enter the date: ");
             if(scanf("%d",&cday)!=EOF)
             {
-                printf("Enter the month [1-12]: ");
+                printf("Enter the month: ");
                 if(scanf("%s", cmonth)!=EOF)
                 {
-                    printf("Enyer the start time [9-16]: ");
+                    printf("Enter the start time: ");
                     if(scanf("%d",&cstr)!=EOF)
                     {
-                        printf("Enter the end time [10-17]: ");
+                        printf("Enter the end time: ");
                         if(scanf("%d",&cend)!=EOF)
                         {
                             for(i = 0; i < books.arrLength; i++)
@@ -63,12 +63,12 @@ int bookingCancellation() {
 
                                     if(check)
                                         {
-                                            printf("\nYou are successfully cancel the booking for the room No. %d at time %d.00%s - %d.00%s", croom, cstr, checkTime(cstr), cend, checkTime(cend));
+                                            printf("\nYou are successfully cancel the booking for the room No. %d between %d.00am/pm - %d.00am/pm.", croom, cstr, checkTime(cstr), cend, checkTime(cend));
                                         }
 
                                     } else
                                         {
-                                            if(!check) printf("Please try again");
+                                            if(!check) printf("Please try again.");
                                         }
                             }
 
