@@ -4,11 +4,11 @@ int logoutPage() {
     printf("---------Logout Page---------\n");
     if(STUDENT_ID) {
 
-        printf("Goodbye!!!");
+        printf("Goodbye!!!\n\n");
 
     } else {
 
-        printf("You cannot logout because you are not currently logged-in.\n");
+        printf("\nYou cannot logout because you are not currently logged-in.\n\n");
     }
 
     return 0;

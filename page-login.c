@@ -52,7 +52,7 @@ int loginPage() {
         } while (!check);
 
     } else {
-        printf("You are logged!\n");
+        printf("You are logged!\n\n");
         checkFunc = 1;
     }
     

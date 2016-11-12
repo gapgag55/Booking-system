@@ -52,14 +52,13 @@ char *writeRoom(int roomId, int day, char m[], int justLast) {
             }
         } else if(afternoon > 0){
             if(justLast) {
-                sprintf(text, "%d%s   ", morning + afternoon, "(A)");
+                sprintf(text, "%d%s  ", morning + afternoon, "(A)");
             } else {
                 sprintf(text, " IT%3d %d%s   ", room, morning + afternoon, "(A)");
             }
-        } else
-        {
+        } else {
             if(justLast) {
-                text=" FULL ";
+                text = " FULL ";
             } else {
                 sprintf(text, " IT%3d FULL   ", room);
             }
