@@ -1,5 +1,5 @@
 int bookingCancellation() {
-
+    
     int croom;
     int cday;
     int cstr;
@@ -19,12 +19,12 @@ int bookingCancellation() {
     int i;
     int at = 0;
     int check = 0;
-
+    
     bookDB books = getBookingDB();
     bookDB updateBook;
-
+    
     printf("-------------Cancle Booking Page-------------\n");
-
+    
     if(STUDENT_ID) {
         
         while(1) {
@@ -64,54 +64,54 @@ int bookingCancellation() {
                                     }
                                 }
                                 if(count==1)
+                                {
+                                    count = 0;
+                                    for(i = 0; i < books.arrLength; i++)
                                     {
-                                        count = 0;
-                                        for(i = 0; i < books.arrLength; i++)
+                                        if(i!=at)
                                         {
-                                            if(i!=at)
-                                            {
-                                                updateBook.room[count] = books.room[i];
-                                                updateBook.day[count] = books.day[i];
-                                                updateBook.month[count] = books.month[i];
-                                                updateBook.startTime[count] = books.startTime[i];
-                                                updateBook.endTime[count] = books.endTime[i];
-                                                updateBook.studentID[count] = books.studentID[i];
-
-                                                ++count;
-                                            }
-                                        }
-                                        
-                                        updateBook.arrLength = count;
-                                        check = updateBookingDB(updateBook);
-
-
-                                        if(check) {
-                                            sprintf(start, "%s", checkTime(cstr));
-                                            sprintf(end, "%s", checkTime(cend));
+                                            updateBook.room[count] = books.room[i];
+                                            updateBook.day[count] = books.day[i];
+                                            updateBook.month[count] = books.month[i];
+                                            updateBook.startTime[count] = books.startTime[i];
+                                            updateBook.endTime[count] = books.endTime[i];
+                                            updateBook.studentID[count] = books.studentID[i];
                                             
-                                            printf("\nYou are successfully cancel the booking for the room No. %d between %d%s - %d%s.", croom, timeClock(cstr), checkTime(cstr), timeClock(cend), checkTime(cend));
+                                            ++count;
                                         }
-
-                                    } else {
-                                        if(!check) printf("\nPlease try again.\n");
                                     }
+                                    
+                                    updateBook.arrLength = count;
+                                    check = updateBookingDB(updateBook);
+                                    
+                                    
+                                    if(check) {
+                                        sprintf(start, "%s", checkTime(cstr));
+                                        sprintf(end, "%s", checkTime(cend));
+                                        
+                                        printf("\nYou are successfully cancel the booking for the room No. %d between %d%s - %d%s.", croom, timeClock(cstr), checkTime(cstr), timeClock(cend), checkTime(cend));
+                                    }
+                                    
+                                } else {
+                                    if(!check) printf("\nPlease try again.\n");
+                                }
                                 
                                 break;
-                                }
-
-                            }
-
-                    }
-
-                }
-            }
-
+                            } else break;
+                            
+                        } else break;
+                        
+                    } else break;
+                
+                } else break;
+                
+            } else break;
         }
-
+        
     } else {
         printf("You are not logged!\n");
     }
-
+    
     printf("\n\n");
     return 0;
 }
