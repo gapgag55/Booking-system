@@ -64,15 +64,13 @@ int booking() {
 
             if(check) {
                 if(!checkSunday(day, month)) {
-                    if(check) {
-                        msg = saveBookingDB(room, day, month, startTime, endTime, STUDENT_ID);
+                    msg = saveBookingDB(room, day, month, startTime, endTime, STUDENT_ID);
 
-                        if(msg == 1) {
-                            printf("\nYou are successfully booked.\n");
-                            printf("You have booked room no. %d on date %d %s, from %d%s - %d%s\n\n", room, day, getMonth(month), timeClock(startTime), checkTime(startTime), timeClock(endTime), checkTime(endTime));
-                        }
-                        break;
+                    if(msg == 1) {
+                        printf("\nYou are successfully booked.\n");
+                        printf("You have booked room no. %d on date %d %s, from %d%s - %d%s\n\n", room, day, getMonth(month), timeClock(startTime), checkTime(startTime), timeClock(endTime), checkTime(endTime));
                     }
+                    break;
                 } else {
                     printf("\nYou can't book at %d %s (Sunday)\n\n", day, getMonth(month));
                 }
