@@ -1,9 +1,5 @@
-- We have changed the address of FILE IO inside "database.c" file
-- We booked on 21 Nov
+database.c
+    - Change absolute path to relative path of defined variable
 
-How to
-
-1. Please change the path FILE IO in “database.c” (DEFINE variable)
-2. Save
-3. Run
-
+helpers.c
+    - Change switch case to array condition in getMonth() function 
