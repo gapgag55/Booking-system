@@ -20,48 +20,11 @@ int numlen(int num) {
 
 char *getMonth(int order) {
     char *month;
-
-    switch (order) {
-        case 1:
-            month = "Jan";
-            break;
-        case 2:
-            month = "Feb";
-            break;
-        case 3:
-            month = "Mar";
-            break;
-        case 4:
-            month = "Api";
-            break;
-        case 5:
-            month = "May";
-            break;
-        case 6:
-            month = "Jun";
-            break;
-        case 7:
-            month = "Jul";
-            break;
-        case 8:
-            month = "Aug";
-            break;
-        case 9:
-            month = "Sep";
-            break;
-        case 10:
-            month = "Oct";
-            break;
-        case 11:
-            month = "Nov";
-            break;
-        case 12:
-            month = "Dec";
-            break;
-        default:
-            month = "Error";
-            break;
-    }
+    char months[][] = {"Jan", "Feb", "Mar", "Api", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    if(1 <= order && order <= 12)
+        month = months[order-1];
+    else   
+        month = "Error";
 
     return month;
 }
